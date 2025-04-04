@@ -1,0 +1,162 @@
+d-flex justify-content-center{
+    padding-top: 50%;
+}
+
+input, select {
+    border-radius: 8px;
+    border: 1px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.300);
+}
+
+.blur {
+    filter: blur(5px);
+    /* Adicione o efeito de desfoque */
+    pointer-events: none;
+    /* Impede que elementos da tela recebam eventos do mouse */
+    z-index: -1;
+}
+
+.loading-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.loading-modal svg {
+    width: 3.25em;
+    transform-origin: center;
+    animation: rotate4 2s linear infinite;
+    z-index: 2;
+}
+
+.loading-modal circle {
+    fill: none;
+    stroke: hsl(214, 97%, 59%);
+    stroke-width: 2;
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+    stroke-linecap: round;
+    animation: dash4 1.5s ease-in-out infinite;
+}
+
+@keyframes rotate4 {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes dash4 {
+    0% {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+    }
+
+    50% {
+        stroke-dasharray: 90, 200;
+        stroke-dashoffset: -35px;
+    }
+
+    100% {
+        stroke-dashoffset: -125px;
+    }
+}
+
+
+.card {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    z-index: 10;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* Estilo Modal confirmação */
+.modal-confirm {
+    width: 280px;
+    height: fit-content;
+    background-color: #ffffff;
+    border-radius: 10px;
+    border: 1px solid rgb(206, 206, 206);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    gap: 15px;
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.066);
+}
+
+.modal-heading {
+    color: rgb(34, 34, 34);
+    font-weight: 800;
+    text-align: center;
+}
+
+.modal-info {
+    font-size: 11px;
+    font-weight: 400;
+    color: rgb(51, 51, 51);
+    text-align: center;
+}
+
+.accept-cookie-button {
+    width: 50%;
+    padding: 8px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: rgb(34, 34, 34);
+    color: white;
+}
+
+.accept:hover {
+    background-color: rgb(0, 0, 0);
+}
+
+/* Estilo para os botões */
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Botão de confirmar */
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
