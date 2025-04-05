@@ -1,9 +1,15 @@
+var homeElement = document.querySelector(".home");
+
 // Função para carregar páginas dinamicamente na div #content
 function loadPage(page, element) {
     fetch(`/pages/${page}.html`)
         .then(response => response.text())
         .then(html => {
             document.getElementById("content").innerHTML = html;
+            if (element === null) {
+                element = homeElement; // Se não houver elemento, use o padrão
+            }
+            console.log(element);
             highlightMenuItem(element);
         })
         .catch(error => console.error("Erro ao carregar a página:", error));
@@ -15,6 +21,15 @@ function loadSubPage(page) {
         .then(html => {
             document.getElementById("content").innerHTML = html;
             runPageScript(page);
+        })
+        .catch(error => console.error("Erro ao carregar a página:", error));
+}
+
+function loadLastPage(page) {
+    fetch(`/pages/${page}.html`)
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById("content").innerHTML = html;
         })
         .catch(error => console.error("Erro ao carregar a página:", error));
 }

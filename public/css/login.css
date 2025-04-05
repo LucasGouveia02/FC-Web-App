@@ -1,0 +1,330 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+
+}
+
+.principal {
+    width: 100vw;
+    height: 100vh;
+    /*tamanho da viewport (pega o tamanho da tela)*/
+    background: radial-gradient(circle, #4340ff, #000770, #000000);
+    display: flex;
+    justify-content: center;
+    /* eixo x */
+    align-items: center;
+    /* eixo y */
+    flex-direction: column;
+}
+
+.login {
+    width: 60%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-login {
+    width: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px 35px;
+    /* eixo y e eixo x (respectivamente) */
+    background-color: #ffffff;
+    border-radius: 20px;
+    /* box-shadow: 0px 10px 20px 0px rgba(255, 255, 255, 0.781); */
+    /*1-sombra direita/esquerda 2-direita/baixo 3-blur 4-cor*/
+}
+
+#link_btn {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+#logo {
+    width: 30%;
+    height: 30%;
+}
+
+.recuperar-senha {
+    text-decoration: none;
+    color: black;
+}
+
+.recuperar-senha:hover {
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+}
+
+.cadastro {
+    text-decoration: none;
+    color: black;
+}
+
+.cadastro:hover{
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+}
+
+.text-field {
+    display: flex;
+    flex-direction: column;
+    /* quando usado flex direction= */
+    justify-content: center;
+    /* eixo y  - inverso */
+    align-items: flex-start;
+    /* eixo x - inverso */
+    margin: 20px 0;
+}
+
+.text-field input {
+    width: 100%;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: solid 1px black;
+    border-radius: 10px;
+    padding: 15px;
+    color: black;
+    font-size: 12pt;
+    /* box-shadow: 0px 10px 10px rgb(69, 65, 65);  */
+    outline: none;
+    background-color: #f2f2f244;
+}
+
+.text-field input::placeholder {
+    color: black;
+}
+
+.text-field label {
+    margin-bottom: 10px;
+    font-weight: 450;
+}
+
+#link_btn_login {
+    width: 100%;
+    text-align: center;
+}
+
+.btn-login {
+    background-color: black;
+    width: 54%;
+    padding: 16px 0px;
+    margin: 25px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0px 5px 5px rgb(69, 65, 65);
+}
+
+.btn-login:hover {
+    background-color: #f2f2f267;
+    color: black;
+    transition: all 0.8s ease;
+}
+
+
+.card {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    /* Centraliza verticalmente */
+    justify-content: center;
+    /* Centraliza horizontalmente */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Fundo escuro para sobreposição */
+}
+
+.modal-confirm {
+    width: 280px;
+    height: fit-content;
+    background-color: #ffffff;
+    border-radius: 10px;
+    border: 1px solid rgb(206, 206, 206);
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    gap: 15px;
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.066);
+}
+
+.modal-heading {
+    color: rgb(34, 34, 34);
+    font-weight: 800;
+    text-align: center;
+}
+
+.modal-info {
+    font-size: 11px;
+    font-weight: 400;
+    color: rgb(51, 51, 51);
+    text-align: center;
+}
+
+.button-wrapper {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.accept-cookie-button {
+    width: 50%;
+    padding: 8px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: rgb(34, 34, 34);
+    color: white;
+}
+
+.accept:hover {
+    background-color: rgb(0, 0, 0);
+}
+
+
+.modal-info {
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    /* margin: 25px 25px; */
+}
+
+.cartao {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+
+
+}
+
+.inicial {
+    background: #000;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-family: "Poppins", sans-serif;
+}
+
+.button-wrapper {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+.button-wrapper button {
+    margin: 0 25px;
+    margin-top: 20px;
+    padding: 8px 15px;
+}
+
+.modal-dados-pessoais {
+    background-color: #ffffff;
+    padding: 18px;
+    border: 1px solid #888;
+    width: 300px;
+    height: 200px;
+    position: relative;
+    border-radius: 15px;
+}
+
+#message {
+    text-align: center;
+    color: #000;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.message {
+    text-align: center;
+    color: #000;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.invalido {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.valid-email {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-email {
+    background-color: #ffffff;
+    padding: 18px;
+    border: 1px solid #888;
+    width: 450px;
+    height: 400px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.confirmation {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 45px;
+}
+
+/* validação campos de login */
+/* .input-invalido {
+    border: 2px solid red;
+}
+
+.input-valido {
+    border: 2px solid #5F9EA0;
+} */
