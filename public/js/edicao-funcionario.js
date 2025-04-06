@@ -1,5 +1,7 @@
-export function init() {
-    const userId = 1; // ID fixo para o exemplo, pode ser dinâmico
+export function init(userId) {
+    if (!userId) {
+        userId =  1;
+    }
 
     const telefoneInput = document.getElementById("telefone");
     const nomeCompleto = document.getElementById("nomeCompleto");
