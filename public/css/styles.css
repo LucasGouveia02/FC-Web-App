@@ -21,3 +21,11 @@ body {
 .nav-link.active img {
     filter: brightness(0) invert(1);
 }
+
+.loading-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
