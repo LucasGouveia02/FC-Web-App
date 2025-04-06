@@ -9,7 +9,6 @@ function loadPage(page, element) {
             if (element === null) {
                 element = homeElement; // Se não houver elemento, use o padrão
             }
-            console.log(element);
             highlightMenuItem(element);
         })
         .catch(error => console.error("Erro ao carregar a página:", error));

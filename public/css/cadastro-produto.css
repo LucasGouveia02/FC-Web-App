@@ -1,0 +1,344 @@
+/* Estilos gerais */
+#imagens, #imagemPrincipal{
+    display: none;
+}
+
+.imagem1, 
+.imgsAdicionais{
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #aaa;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: color 300ms ease-in-out, background 300ms ease-in-out;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.300);
+    overflow: hidden;
+}
+.imagem1:hover
+/* .imgsAdicionais:hover  */
+{
+    color: #302222;
+    background: #ccc;
+}
+
+.container {
+    background-color: #fff; /* Cor de fundo do container */
+    padding: 70px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 70%;
+    max-width: 1000px;
+    color: #333; /* Cor do texto dentro do container */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.linha{
+    display: flex;
+    flex-direction: space-between;
+    gap: 20px;
+}
+
+.campo{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    color: #333;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-group select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.form-group select option {
+    padding: 10px;
+    background-color: #fff;
+    color: #333;
+}
+
+.form-group select:disabled {
+    background-color: #e9ecef;
+    cursor: not-allowed;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-sizing: border-box;
+    color: #333; /* Cor do texto dos inputs */
+}
+
+button {
+    background-color: #007bff; /* Cor primária */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 10px; /* Adiciona espaço entre os botões */
+    width: 100%; /* Ocupa toda a largura do formulário */
+}
+
+button:hover {
+    background-color: #0056b3; /* Cor primária escura */
+}
+
+button[type="submit"] {
+    background-color: #130ff3; /* Cor secundária */
+}
+
+button[type="submit"]:hover {
+    background-color: #000770; /* Cor secundária escura */
+}
+
+button[type="button"] {
+    background-color: #7e7e7e; /* Cor de cancelamento */
+}
+
+button[type="button"]:hover {
+    background-color: #636262; /* Cor de cancelamento escura */
+}
+
+/* Estilo do botão com a nova nomenclatura */
+.btn-remove {
+    position: relative;
+    border-radius: 6px;
+    width: 160px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border: 1px solid #cc0000;
+    background-color: #e50000;
+    overflow: hidden;
+}
+
+.btn-remove,
+.btn-remove__icon,
+.btn-remove__text {
+    transition: all 0.6s;
+}
+
+.btn-remove .btn-remove__text {
+    transform: translateX(40px);
+    color: #fff;
+    font-weight: 600;
+}
+
+.btn-remove .btn-remove__icon {
+    position: absolute;
+    transform: translateX(150px); /* Move o ícone para fora do botão inicialmente */
+    height: 100%;
+    width: 39px;
+    background-color: #cc0000;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-remove .svg {
+    width: 20px;
+}
+
+.btn-remove:hover {
+    background: #cc0000;
+}
+
+.btn-remove:hover .btn-remove__text {
+    color: transparent;
+}
+
+.btn-remove:hover .btn-remove__icon {
+    width: 50px;
+    transform: translateX(50%); /* Para o ícone no centro do botão */
+}
+
+.btn-remove:active .btn-remove__icon {
+    background-color: #b20000;
+}
+
+.btn-remove:active {
+    border: 1px solid #b20000;
+}
+  
+  /* Estilo do contêiner das imagens */
+  .img-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px; /* Espaçamento inferior entre imagens */
+  }
+  
+
+#response {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #dc3545; /* Cor de erro */
+}
+
+.image-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.image-preview img {
+    max-width: 100px;
+    max-height: 100px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+/* Estilos do modal */
+.modal {
+    display: none; /* Esconde o modal por padrão */
+    position: fixed; /* Fixa o modal na tela */
+    z-index: 1; /* Garante que o modal fique acima de outros elementos */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Habilita rolagem se necessário */
+    background-color: rgb(0, 0, 0); /* Cor de fundo preta */
+    background-color: rgba(0, 0, 0, 0.4); /* Cor de fundo com opacidade */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* Centraliza o modal */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Largura do modal */
+    max-width: 500px; /* Largura máxima do modal */
+    border-radius: 8px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.EscolhaImg {
+    margin-bottom: 5%;
+}
+
+input.erro {
+    border: 1px solid red;
+    background-color: #ffe6e6;
+}
+
+.blur {
+    filter: blur(5px);
+    /* Adicione o efeito de desfoque */
+    pointer-events: none;
+    /* Impede que elementos da tela recebam eventos do mouse */
+    z-index: -1;
+}
+
+.loading-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.loading-modal svg {
+    width: 3.25em;
+    transform-origin: center;
+    animation: rotate4 2s linear infinite;
+    z-index: 2;
+}
+
+.loading-modal circle {
+    fill: none;
+    stroke: hsl(214, 97%, 59%);
+    stroke-width: 2;
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+    stroke-linecap: round;
+    animation: dash4 1.5s ease-in-out infinite;
+}
+
+@keyframes rotate4 {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes dash4 {
+    0% {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+    }
+
+    50% {
+        stroke-dasharray: 90, 200;
+        stroke-dashoffset: -35px;
+    }
+
+    100% {
+        stroke-dashoffset: -125px;
+    }
+}
