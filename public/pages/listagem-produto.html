@@ -1,0 +1,106 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/listagem-produto.css">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <title>Lista Produtos</title>
+</head>
+
+<div id="main-content">
+    <div class="container">
+        <div class="header">
+            <span>Listagem de produtos</span>
+        </div>
+        <div class="container-filtro">
+            <div class="filtro-usuarios">
+                <input id="filtro" type="text" placeholder="Digite o nome do produto">
+            </div>
+            <button onclick="filtrarProdutos()" id="buscar-filtro" type="button" class="btn btn-primary btn-lg btn-block btn-buscar" style="background: #EC1D25">Buscar</i></button>
+        </div>
+        <div class="divTable">
+        </div>
+        <div id="pagination" class="pagination">
+            <!-- Botões de paginação serão gerados dinamicamente -->
+        </div>
+    </div>
+</div>
+
+<!-- desativa o clique no fundo da tela ao abrir o modal -->
+<div id="overlay" class="overlay"></div>
+
+<!-- modal visualização do produto -->
+<div class="card-produto">
+    <div class="modal-detalhe-prod-adm">
+        <div class="modal-heading">
+            <p class="text-preview">Preview do produto</p>
+            <button onclick="fecharModalProduto()" class="btn-fechar">
+                <span class="X"></span>
+                <span class="Y"></span>
+                <div class="close">Fechar</div>
+            </button>
+        </div>
+
+        <div class="produto">
+            <div class="imagens-prod">
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+
+                    </div>
+
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+            <div class="info-prod">
+                <p class="titulo-prod"></p>
+                <p class="valor-prod"></p>
+                <p class="avaliacao-prod"></p>
+                <p class="descricao-prod"></p>
+
+                <button class="btn-comprar" disabled>
+                    <svg viewBox="0 0 16 16" class="bi bi-cart-check" height="24" width="24"
+                        xmlns="http://www.w3.org/2000/svg" fill="#fff">
+                        <path
+                            d="M11.354 6.354a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z">
+                        </path>
+                        <path
+                            d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z">
+                        </path>
+                    </svg>
+                    <p class="text">Comprar</p>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- modal confirmar alteração no status do produto -->
+<div class="card-confirmar">
+    <div class="card-content">
+        <p class="card-heading"></p>
+        <p class="card-description">Confirme a alteração do produto selecionado</p>
+    </div>
+    <div class="card-button-wrapper">
+        <button onclick="fecharModalConfirmacao()" class="card-button secondary">Cancelar</button>
+        <button class="card-button primary"></button>
+    </div>
+    <button onclick="fecharModalConfirmacao()" class="exit-button">
+        <svg height="20px" viewBox="0 0 384 512">
+            <path
+                d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z">
+            </path>
+        </svg>
+    </button>
+</div>
+
+<script src="../js/listagem-produto.js" defer></script>
