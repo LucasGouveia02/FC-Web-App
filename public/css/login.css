@@ -15,7 +15,7 @@ body {
     width: 100vw;
     height: 100vh;
     /*tamanho da viewport (pega o tamanho da tela)*/
-    background: radial-gradient(circle, #4340ff, #000770, #000000);
+    background: #EDEDED;
     display: flex;
     justify-content: center;
     /* eixo x */
@@ -53,8 +53,8 @@ body {
 }
 
 #logo {
-    width: 30%;
-    height: 30%;
+    width: 35%;
+    height: 35%;
 }
 
 .recuperar-senha {
@@ -120,7 +120,7 @@ body {
 }
 
 .btn-login {
-    background-color: black;
+    background-color: #EC1D25;
     width: 54%;
     padding: 16px 0px;
     margin: 25px;
@@ -133,11 +133,12 @@ body {
     color: white;
     cursor: pointer;
     box-shadow: 0px 5px 5px rgb(69, 65, 65);
+    margin-top: 50px;
 }
 
 .btn-login:hover {
-    background-color: #f2f2f267;
-    color: black;
+    background-color: #99060b;
+    color: white;
     transition: all 0.8s ease;
 }
 
