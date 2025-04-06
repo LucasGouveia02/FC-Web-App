@@ -1,11 +1,11 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const botaoLogin = document.querySelector(".btn-login");
-    botaoLogin.addEventListener("click", async (event) => {
-        window.location.href = "/pages/index.html";
-        // validarLogin();
-    });
+// document.addEventListener("DOMContentLoaded", function () {
+//     const botaoLogin = document.querySelector(".btn-login");
+//     botaoLogin.addEventListener("click", async (event) => {
+//         window.location.href = "/pages/index.html";
+//         // validarLogin();
+//     });
     
-});
+// });
 
 const formulario = document.querySelector("form");
 const email = document.querySelector(".email");
@@ -17,7 +17,7 @@ const show = document.querySelector(".modal-confirm");
 function validarLogin() {
     const login = {
         "email": email.value,
-        "senha": senha.value
+        "password": senha.value
     };
 
     fetch('http://localhost:8082/login/employeeAccess', {
@@ -30,7 +30,6 @@ function validarLogin() {
         .then(response => {
             if (response.status === 200) {
 
-                // Login está ok,  converte a resposta em JSON
                 return response.json();
             } else if (response.status === 403) {
 
@@ -41,31 +40,26 @@ function validarLogin() {
         })
         .then(data => {
 
-            if (data.ativo) {
-                if (data.grupo != "cliente") {
+            if (data.enabled) {
 
-                    console.log("Usuario autenticado: " + data.autenticado)
+                console.log("Employee authenticated: " + data.authenticated)
 
-                    // Armazena os dados do usuário no localStorage
-                    localStorage.setItem("autenticado", data.autenticado);
-                    localStorage.setItem("id", data.id);
-                    localStorage.setItem("nome", data.nome);
-                    localStorage.setItem("grupo", data.grupo);
-                    localStorage.setItem("ativo", data.ativo);
+                // Armazena os dados do usuário no localStorage
+                localStorage.setItem("authenticated", data.authenticated);
+                localStorage.setItem("employeeId", data.id);
+                localStorage.setItem("employeeName", data.name);
+                localStorage.setItem("employeeRole", data.role);
+                localStorage.setItem("storeName", data.storeName);
+                localStorage.setItem("storeId", data.storeId);
+                localStorage.setItem("foodCourt", data.foodCourt);
 
-                    loginSucedido();
-                } else {
-                    alert('Usuário sem permissão para acessar o Backoffice!')
-                }
+                loginSucedido();
             } else {
-                // Usuário não está ativo
                 alert('Usuário inativo. Por favor, entre em contato com o administrador.');
             }
         })
         .catch(error => {
-            // Exibe mensagem de erro em caso de falha na requisição
             console.log('Erro ao acessar usuário:', error);
-            // alert("Erro ao acessar usuário. Por favor, tente novamente.");
         });
 }
 
@@ -95,18 +89,15 @@ function loginSucedido() {
     const modal = document.querySelector('.cartao');
     const btnTelaInicial = document.querySelector('.inicial');
 
-    // Função para abrir o modal
     const openModal = () => {
         modal.style.display = 'flex';
     };
 
-    // abre o modal após o login bem sucedido
     openModal()
 
-    // Direciona para a tela inicial
     btnTelaInicial.addEventListener('click', function (event) {
-        event.preventDefault(); // Evita o comportamento padrão do formulário
-        window.location.href = "TelaInicial.html";
+        event.preventDefault();
+        window.location.replace("/pages/index.html");
     });
 }
 
@@ -114,23 +105,18 @@ function loginInvalido() {
     const modal = document.querySelector('#not-valid');
     const btnOk = document.querySelector('#clicked');
 
-    // Função para abrir o modal
     const openModal = () => {
         modal.style.display = 'flex';
     };
 
-    // Função para fechar o modal
     const closeModal = () => {
         modal.style.display = 'none';
     };
 
-    // Abre o modal
     openModal();
 
-    // Adiciona o evento de clique ao botão 'btnOk'
     if (btnOk) {
         btnOk.addEventListener('click', (event) => {
-            console.log("Botão OK clicado");
             closeModal();
         });
     } else {
@@ -143,10 +129,6 @@ function loginInvalido() {
             closeModal();
         }
     });
-}
-
-function limparCampos() {
-    document.querySelector(".card-login").reset();
 }
 
 btnLogin.addEventListener('click', function (event) {
