@@ -14,13 +14,10 @@ body {
 .principal {
     width: 100vw;
     height: 100vh;
-    /*tamanho da viewport (pega o tamanho da tela)*/
     background: #EDEDED;
     display: flex;
     justify-content: center;
-    /* eixo x */
     align-items: center;
-    /* eixo y */
     flex-direction: column;
 }
 
@@ -39,11 +36,8 @@ body {
     align-items: center;
     flex-direction: column;
     padding: 30px 35px;
-    /* eixo y e eixo x (respectivamente) */
     background-color: #ffffff;
     border-radius: 20px;
-    /* box-shadow: 0px 10px 20px 0px rgba(255, 255, 255, 0.781); */
-    /*1-sombra direita/esquerda 2-direita/baixo 3-blur 4-cor*/
 }
 
 #link_btn {
@@ -57,36 +51,11 @@ body {
     height: 35%;
 }
 
-.recuperar-senha {
-    text-decoration: none;
-    color: black;
-}
-
-.recuperar-senha:hover {
-    text-decoration: none;
-    font-weight: bold;
-    color: black;
-}
-
-.cadastro {
-    text-decoration: none;
-    color: black;
-}
-
-.cadastro:hover{
-    text-decoration: none;
-    font-weight: bold;
-    color: black;
-}
-
 .text-field {
     display: flex;
     flex-direction: column;
-    /* quando usado flex direction= */
     justify-content: center;
-    /* eixo y  - inverso */
     align-items: flex-start;
-    /* eixo x - inverso */
     margin: 20px 0;
 }
 
@@ -100,7 +69,6 @@ body {
     padding: 15px;
     color: black;
     font-size: 12pt;
-    /* box-shadow: 0px 10px 10px rgb(69, 65, 65);  */
     outline: none;
     background-color: #f2f2f244;
 }
@@ -151,11 +119,8 @@ body {
     height: 100%;
     display: none;
     align-items: center;
-    /* Centraliza verticalmente */
     justify-content: center;
-    /* Centraliza horizontalmente */
     background-color: rgba(0, 0, 0, 0.5);
-    /* Fundo escuro para sobreposição */
 }
 
 .modal-confirm {
@@ -215,7 +180,6 @@ body {
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    /* margin: 25px 25px; */
 }
 
 .cartao {
