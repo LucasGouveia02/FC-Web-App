@@ -1,5 +1,6 @@
 var homeElement = document.querySelector(".home");
 
+
 // Função para carregar páginas dinamicamente na div #content
 function loadPage(page, element) {
     fetch(`/pages/${page}.html`)

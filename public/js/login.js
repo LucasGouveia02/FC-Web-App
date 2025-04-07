@@ -88,6 +88,7 @@ function validarCampos() {
 function loginSucedido() {
     const modal = document.querySelector('.cartao');
     const btnTelaInicial = document.querySelector('.inicial');
+    
 
     const openModal = () => {
         modal.style.display = 'flex';
@@ -99,6 +100,7 @@ function loginSucedido() {
         event.preventDefault();
         window.location.replace("/pages/index.html");
     });
+    
 }
 
 function loginInvalido() {
