@@ -2,6 +2,7 @@ export function init() {
     const telefoneInput = document.getElementById("telefone");
     const botaoConfirmar = document.querySelector(".btn-confirmar");
     const botaoCancelar = document.querySelector(".btn-cancelar");
+    let storeId = localStorage.getItem("storeId");
     if (!botaoConfirmar) return;
 
     botaoConfirmar.addEventListener("click", async () => {
@@ -22,7 +23,8 @@ export function init() {
             phoneNumber: contato,
             email: email,
             password: senha,
-            role: grupo
+            role: grupo,
+            storeId: storeId
         };
 
         fetch("http://localhost:8083/employee/register", {
