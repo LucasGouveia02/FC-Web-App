@@ -1,11 +1,14 @@
 export function init(userId) {
+   
     if (!userId) {
-        userId =  1;
+        userId = userId || localStorage.getItem("employeeId"); // Tenta obter o ID do usuário do localStorage
     }
+
+    
 
     const telefoneInput = document.getElementById("telefone");
     const nomeCompleto = document.getElementById("nomeCompleto");
-    const telefone = document.getElementById("telefone"); // Confirme se o ID no HTML está correto
+    const telefone = document.getElementById("telefone");
     const email = document.getElementById("email");
     const grupo = document.getElementById("grupo");
     const senha = document.getElementById("senha");
@@ -15,14 +18,17 @@ export function init(userId) {
     telefoneInput.addEventListener("input", aplicarMascaraTelefone);
 
     function atualizarCampos() {
-        if (grupo.value === "Atendente") {
-            grupo.disabled = true; // Libera alteração do grupo
-            email.disabled = true;  // Impede alteração do email
-            senha.disabled = false; // Libera alteração da senha
+        const loggedInEmployeeId = localStorage.getItem("employeeId"); // ID do funcionário logado
+        const loggedInEmployeeRole = localStorage.getItem("employeeRole"); // Função do funcionário logado
+        if (loggedInEmployeeId === userId || loggedInEmployeeRole === "Funcionario") {
+            grupo.disabled = true;
+            email.disabled = true;  
+            senha.disabled = false;
             confirmSenha.disabled = false;
-        } else if (grupo.value === "Gerente") {
-            email.disabled = true;
-            senha.disabled = true;  // Impede alteração da senha
+        } else {
+            grupo.disabled = false; 
+            email.disabled = true;  
+            senha.disabled = true;  
             confirmSenha.disabled = true;
         }
     }
