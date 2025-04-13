@@ -104,7 +104,12 @@ function employeeAuthentication() {
     nameElement.textContent = firstname;
 
     if (employeeRole === "Atendente") {
-        console.log("atendente");
+        // Oculta o menu "Gestão de Produtos" para Atendentes
+        const gestaoProdutosLink = document.querySelector('a.nav-link[onclick="loadPage(\'gestao-produtos\', this)"]');
+        if (gestaoProdutosLink) {
+            gestaoProdutosLink.parentElement.style.display = "none";
+        }
+
 
         // Altera o título da barra lateral
         const gestaoFuncionariosLink = document.querySelector('a.nav-link[onclick="loadPage(\'gestao-funcionarios\', this)"]');
@@ -131,7 +136,7 @@ function employeeAuthentication() {
         if (listagemCard) {
             listagemCard.style.display = "none";
         }
-    } 
+    }
 }
 
 document.addEventListener("DOMContentLoaded", function () {
