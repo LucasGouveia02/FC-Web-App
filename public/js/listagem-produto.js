@@ -1,9 +1,6 @@
 export function init() {
 
-    // var grupoUsuarioLogado = localStorage.getItem("grupo");
-    var grupoUsuarioLogado = "Gerente";
-
-    const rowsPerPage = 10;
+    const botaoCancelar = document.querySelector(".btn-cancelar");
     let currentPage = 1;
     let totalPages = 0;
     let data = []; // Array para armazenar os dados dos produtos
@@ -13,9 +10,8 @@ export function init() {
         try {
             const response = await fetch(`http://localhost:8084/product/list?page=${page}`); // Substitua pela URL do seu backend
             const result = await response.json();
-            data = result.products; // Armazena os produtos recebidos
-            totalPages = result.totalPages; // Armazena o número total de páginas
-            console.log(data);
+            data = result.products;
+            totalPages = result.totalPages;
             displayTableData();
             setupPagination();
         } catch (error) {
@@ -26,85 +22,46 @@ export function init() {
     function displayTableData() {
         const tabela = document.querySelector('.divTable');
 
-        if (grupoUsuarioLogado === "Gerente") {
-            tabela.innerHTML = `
-        <table>
-            <thead> 
-                <tr>       
-                    <th>Imagem</th>
-                    <th>Código</th>
-                    <th>Nome</th>
-                    <th>Estoque</th>
-                    <th>Preço</th>
-                    <th>Status</th>
-                    <th class="acao">Alterar</th>
-                    <th class="acao">Hab/Des</th>
-                </tr>
-            </thead>
-            <tbody id="table-body">
-            </tbody>
-        </table>
+        tabela.innerHTML = `
+                            <table>
+                                <thead> 
+                                    <tr>       
+                                        <th>Imagem</th>
+                                        <th>Código</th>
+                                        <th>Nome</th>
+                                        <th>Estoque</th>
+                                        <th>Preço</th>
+                                        <th>Status</th>
+                                        <th class="acao">Alterar</th>
+                                        <th class="acao">Hab/Des</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-body">
+                                </tbody>
+                            </table>
                         `;
-            const tableBody = document.getElementById('table-body');
-            tableBody.innerHTML = '';
+        const tableBody = document.getElementById('table-body');
+        tableBody.innerHTML = '';
 
-            data.forEach(item => {
-                const row = document.createElement('tr');
+        data.forEach(item => {
+            const row = document.createElement('tr');
 
-                const isProdAtivo = item.enabled ? true : "Ativo";
-                console.log(isProdAtivo);
+            const isProdAtivo = item.enabled;
 
-                row.innerHTML = `
-            <td><img src="${item.imageUrl}" alt="${item.nomeProduto}" width="50"></td>
+            row.innerHTML = `
+            <td><img src="${item.imageUrl}" alt="${item.name}" width="50"></td>
             <td>${item.id}</td>
             <td>${item.name}</td>
             <td>${item.stock}</td>
             <td>R$${item.price.toFixed(2)}</td>
             <td>${item.enabled ? 'Ativo' : 'Inativo'}</td>
-            <td class="acao"><button onclick="alterarProduto(${item.id})">Alterar</button></td>
+            <td class="acao"><button onclick="loadSubPageWithParam('edicao-produto', ${item.id})">Alterar</button></td>
             <td class="acao">
-                <button onclick="abrirModalConfirmacao(${item.id}, '${isProdAtivo}')">${isProdAtivo === true ? 'Desabilitar' : 'Habilitar'}</button>
+                <button onclick="abrirModalConfirmacao(${item.id}, ${isProdAtivo})">${isProdAtivo === true ? 'Desabilitar' : 'Habilitar'}</button>
             </td>
         `;
-                tableBody.appendChild(row);
-            });
-        } else if (grupoUsuarioLogado === "Estoquista") {
-            tabela.innerHTML = `
-        <table>
-            <thead> 
-                <tr>       
-                    <th>Imagem</th>
-                    <th>Código</th>
-                    <th>Nome</th>
-                    <th>Quantidade</th>
-                    <th>Valor</th>
-                    <th>Status</th>
-                    <th class="acao">Alterar</th>
-                </tr>
-            </thead>
-            <tbody id="table-body">
-            </tbody>
-        </table>
-                        `;
-            const tableBody = document.getElementById('table-body');
-            tableBody.innerHTML = '';
-            data.forEach(item => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-            <td><img src="${item.urlImagemPrincipal}" alt="${item.nomeProduto}" width="50"></td>
-            <td>${item.id}</td>
-            <td>${item.nomeProduto}</td>
-            <td>${item.quantidade}</td>
-            <td>${item.preco.toFixed(2)}</td>
-            <td>${item.ativo ? 'Ativo' : 'Inativo'}</td>
-            <td class="acao"><button onclick="alterarProduto(${item.id})">Alterar</button></td>
-        `;
-                tableBody.appendChild(row);
-            });
-        } else {
-            alert("Você não tem permissão para acessar esta página!");
-            window.location.href = 'TelaLogin.html';
-        }
+            tableBody.appendChild(row);
+        });
     }
 
     function setupPagination() {
@@ -175,129 +132,55 @@ export function init() {
     `;
 
         const pagination = document.getElementById('pagination');
-        pagination.innerHTML = ''; // Limpa a paginação quando não houver resultados
+        pagination.innerHTML = '';
     }
+}
 
-    function visualizarProduto(produtoId) {
-        const carrosselImagens = document.querySelector(".swiper-wrapper");
-        const nomeProd = document.querySelector(".titulo-prod");
-        const valorProd = document.querySelector(".valor-prod");
-        const avaliacaoProd = document.querySelector(".avaliacao-prod");
-        const descricaoProd = document.querySelector(".descricao-prod");
-        abrirModalProduto();
-
-        fetch('http://' + API + ':8080/produto/buscaID?id=' + produtoId)
-            .then(response => {
-                if (response.status === 200) {
-                    return response.json();
-                }
-            })
-            .then(produto => {
-
-                // Adiciona a imagem principal
-                let indexImage = 0;
-                carrosselImagens.innerHTML = `
-                <div class="swiper-slide">
-                    <div class="project-img">
-                        <img src="${produto.imagemPrincipal}" alt="Imagem produto ${indexImage++}">
-                    </div>
-                </div>
-            `;
-                atualizarInstanciaSwiper();
-
-                // Adiciona imagens adicionais, se houver
-                if (produto.imagens && produto.imagens.length > 0) {
-                    atualizarLoopSwiper(true);
-                    produto.imagens.forEach(imagenProduto => {
-                        carrosselImagens.innerHTML += `
-                        <div class="swiper-slide">
-                            <div class="project-img">
-                                <img src="${imagenProduto}" alt="Imagem produto ${indexImage++}">
-                            </div>
-                        </div>
-                    `;
-                    });
-                    atualizarInstanciaSwiper();
-                }
-
-                nomeProd.innerText = produto.nomeProduto;
-                valorProd.innerText = "R$ " + produto.preco.toFixed(2);
-                avaliacaoProd.innerText = "Avaliação: " + produto.avaliacao;
-                descricaoProd.innerText = produto.descricao;
-
-            })
-            .catch(error => {
-                console.error('Erro ao acessar produto:', error);
-                alert("Erro ao acessar produto. Por favor, tente novamente.");
-            });
+window.abrirModalConfirmacao = function(id, isProdAtivo) {
+    let funcao = isProdAtivo ? "desabilitado!" : "habilitado!";
+    confirm(`O produto será ${funcao}`);
+    if (isProdAtivo) {
+        desabilitarProduto(id);
+    } else {
+        habilitarProduto(id);
     }
+}
 
-    function abrirModalProduto() {
-        document.querySelector(".card-produto").style.display = "flex";
-    }
+window.habilitarProduto = async function(id) {
+    const endpoint = `http://localhost:8084/product/enable?id=${id}`;
+    try {
+        const response = await fetch(endpoint, {
+            method: 'PATCH'
+        });
 
-    function fecharModalProduto() {
-        document.querySelector(".card-produto").style.display = "none";
-        const carrosselImagens = document.querySelector(".swiper-wrapper");
-        carrosselImagens.innerHTML = '';  // Limpar conteudo do produto antigo
-        atualizarLoopSwiper(false);
-        atualizarInstanciaSwiper();
-    }
-
-    function alterarProduto(id) {
-        // Função para redirecionar para a página de alteração do usuário
-        window.location.href = `TelaAlterarProduto.html?id=${id}`;
-    }
-
-    async function habilitarDesabilitarProduto(id, ativo) {
-        const endpoint = ativo === 'Ativo' ? `http://` + API + `:8080/produto/desativar/${id}` : `http://` + API + `:8080/produto/ativar/${id}`;
-        try {
-            const response = await fetch(endpoint, {
-                method: 'PATCH'
-            });
-
-            if (response.status === 200) {
-                alert(`Produto ${ativo === 'Ativo' ? 'desabilitado' : 'ativado'} com sucesso!`);
-                fetchData();
-            } else {
-                alert("Erro ao tentar atualizar o status do produto. Por favor, tente novamente.");
-            }
-        } catch (error) {
-            console.error("Erro ao atualizar status do produto:", error);
-            alert("Ocorreu um erro inesperado. Por favor, tente novamente.");
-        }
-    }
-
-    function abrirModalConfirmacao(id, ativo) {
-        document.getElementById("overlay").style.display = "flex";
-        document.getElementById("main-content").classList.add("blur");
-
-        const modal = document.querySelector(".card-confirmar");
-        const heading = document.querySelector(".card-heading");
-        const btnConfirmar = modal.querySelector('.card-button.primary');
-
-        if (ativo === "Inativo") {
-            heading.innerText = "Habilitar produto?";
-            btnConfirmar.innerText = "Habilitar";
-            btnConfirmar.style.backgroundColor = "rgb(58, 151, 63)";
+        if (response.status === 200) {
+            alert(`Produto habilitado com sucesso!`);
+            loadLastPageWithScript('listagem-produto');
         } else {
-            heading.innerText = "Desabilitar produto?";
-            btnConfirmar.innerText = "Desabilitar";
-            btnConfirmar.style.backgroundColor = "rgb(214, 63, 58)";
+            alert("Erro ao habilitar o produto. Por favor, tente novamente.");
         }
-
-        modal.style.display = "flex";
-
-        btnConfirmar.onclick = () => {
-            habilitarDesabilitarProduto(id, ativo);
-            fecharModalConfirmacao();
-        }
+    } catch (error) {
+        console.error("Erro ao habilitar o produto:", error);
+        alert("Ocorreu um erro inesperado. Por favor, tente novamente.");
     }
+}
 
-    function fecharModalConfirmacao() {
-        document.querySelector(".card-confirmar").style.display = "none";
-        document.getElementById("overlay").style.display = "none";
-        document.getElementById("main-content").classList.remove("blur");
+window.desabilitarProduto = async function(id) {
+    const endpoint = `http://localhost:8084/product/disable?id=${id}`;
+    try {
+        const response = await fetch(endpoint, {
+            method: 'PATCH'
+        });
+
+        if (response.status === 200) {
+            alert(`Produto desabilitado com sucesso!`);
+            loadLastPageWithScript('listagem-produto');
+        } else {
+            alert("Erro ao desabilitar o produto. Por favor, tente novamente.");
+        }
+    } catch (error) {
+        console.error("Erro ao desabilitar o produto:", error);
+        alert("Ocorreu um erro inesperado. Por favor, tente novamente.");
     }
 }
 

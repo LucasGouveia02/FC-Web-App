@@ -1,4 +1,5 @@
-body, html {
+body,
+html {
     margin: 0;
     padding: 0;
 }
@@ -10,9 +11,11 @@ body, html {
 }
 
 .container {
-    flex: 1; /* Faz ocupar todo o espaço disponível dentro do flex container */
+    flex: 1;
+    /* Faz ocupar todo o espaço disponível dentro do flex container */
     max-height: 80vh;
-    border: 1px solid #ccc; /* Borda visível ao redor */
+    border: 1px solid #ccc;
+    /* Borda visível ao redor */
     border-radius: 10px;
     background: white;
     padding: 10px;
@@ -47,14 +50,13 @@ body, html {
     font-size: 30px;
 }
 
-button:hover {
-    background-color: white;
-    transform: translateY(-2px);
+td button:hover {
+    color: black;
 }
 
-button:active {
-    transform: translateY(0);
-    background-color: #003f7f;
+button:hover {
+    background-color: #F31C1CE0;
+    transform: translateY(-2px);
 }
 
 #new {
@@ -91,6 +93,7 @@ button:active {
 #new:hover,
 #buscar-filtro:hover {
     background-color: black;
+    color: white;
 }
 
 #new:active,
@@ -114,7 +117,7 @@ button:active {
 }
 
 .pagination button.active {
-    background-color: #007bff;
+    background-color: black;
     color: white;
 }
 
@@ -218,10 +221,6 @@ td button {
 
 td button i {
     font-size: 20px;
-}
-
-td button:hover {
-    color: #0056b3;
 }
 
 td button i:first-child {
@@ -383,14 +382,17 @@ tbody tr {
 
 /* Overlay para bloquear interações com o fundo */
 .overlay {
-    display: none; /* Escondido por padrão */
+    display: none;
+    /* Escondido por padrão */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro */
-    z-index: 999; /* Um pouco abaixo do modal */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Fundo escuro */
+    z-index: 999;
+    /* Um pouco abaixo do modal */
 }
 
 /* modal para visualizar produto */
@@ -597,47 +599,6 @@ tbody tr {
     line-height: 1.2;
 }
 
-/* botão comprar */
-.btn-comprar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 15px;
-    gap: 15px;
-    background-color: #181717;
-    outline: 3px #181717 solid;
-    outline-offset: -3px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    transition: 400ms;
-    width: 150px;
-    margin-top: 50px;
-}
-
-.btn-comprar .text {
-    color: white;
-    font-weight: 700;
-    font-size: 1em;
-    transition: 400ms;
-}
-
-.btn-comprar svg path {
-    transition: 400ms;
-}
-
-.btn-comprar:hover {
-    background-color: transparent;
-}
-
-.btn-comprar:hover .text {
-    color: #181717;
-}
-
-.btn-comprar:hover svg path {
-    fill: #181717;
-}
-
 /*Fim estilo modal visualizar produto  */
 
 /* modal confirmar alteração no status do produto */
@@ -700,10 +661,6 @@ tbody tr {
     background-color: black;
     color: white;
 }
-
-/* .primary:hover {
-    background-color: rgb(33, 207, 33);
-} */
 
 .secondary {
     background-color: #919191;

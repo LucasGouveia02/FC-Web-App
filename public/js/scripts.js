@@ -29,11 +29,36 @@ function loadSubPage(page) {
         .catch(error => console.error("Erro ao carregar a página:", error));
 }
 
+function loadSubPageWithParam(page, param) {
+    fetch(`/pages/${page}.html`)
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById("content").innerHTML = html;
+            localStorage.setItem('param', param);
+            runPageScript(page);
+
+            employeeAuthentication();
+        })
+        .catch(error => console.error("Erro ao carregar a página:", error));
+}
+
 function loadLastPage(page) {
     fetch(`/pages/${page}.html`)
         .then(response => response.text())
         .then(html => {
             document.getElementById("content").innerHTML = html;
+
+            employeeAuthentication();
+        })
+        .catch(error => console.error("Erro ao carregar a página:", error));
+}
+
+function loadLastPageWithScript(page) {
+    fetch(`/pages/${page}.html`)
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById("content").innerHTML = html;
+            runPageScript(page);
 
             employeeAuthentication();
         })
