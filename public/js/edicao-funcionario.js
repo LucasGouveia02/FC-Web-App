@@ -4,8 +4,6 @@ export function init(userId) {
         userId = userId || localStorage.getItem("employeeId"); // Tenta obter o ID do usuário do localStorage
     }
 
-    
-
     const telefoneInput = document.getElementById("telefone");
     const nomeCompleto = document.getElementById("nomeCompleto");
     const telefone = document.getElementById("telefone");

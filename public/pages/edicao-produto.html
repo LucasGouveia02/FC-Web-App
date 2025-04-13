@@ -1,103 +1,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/cadastro-funcionario.css">
-    <script src="https://unpkg.com/vanilla-masker/build/vanilla-masker.min.js"></script>
-    <title>Cadastre-se</title>
+    <link rel="stylesheet" href="../css/cadastro-produto.css">
+    <title>Cadastro de Produto</title>
 </head>
-
-<div class="main">
-    <div class="container">
-
-        <div class="pt-0 text-center">
-            <h1 class="mt-0 mb-5">Altere as informações</h1>
+<div class="container">
+    <div class="pt-0 text-center">
+        <h1 class="mt-0 mb-5">Edição de produto</h1>
+    </div>
+    <form id="produtoForm">
+        <div class="form-group">
+            <label for="nomeProduto">Nome do Produto:</label>
+            <input type="text" id="nomeProduto" name="nomeProduto" required>
         </div>
-        <div class="d-flex justify-content-center">
-            <div class="col-md-8 order-md-1">
-                <form class="form" novalidate>
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="nomeCompleto">Nome completo</label>
-                            <input type="text" class="form-control" id="nomeCompleto" placeholder="Digite seu nome..."
-                                required>
-                            <div class="invalid-feedback">
-                                Digite o nome completo do funcionario.
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="Contato">Contato</label>
-                            <input type="text" class="form-control" id="telefone"
-                                placeholder="Informe um numero para contato..." pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
-                                required>
+        <div class="form-group">
+            <label for="categoria">Categoria:</label>
+            <select id="categoria" name="categoria" required>
+                <option value="" disabled selected>Selecione uma categoria</option>
+                <option value="Salgados">Salgados</option>
+                <option value="Doces">Doces</option>
+                <option value="Bebidas">Bebidas</option>
+                <option value="Pratos feitos">Pratos feitos</option>
+            </select>
+        </div>
 
-                            <div class="invalid-feedback">
-                                Digite um número de telefone válido no formato (XX) XXXXX-XXXX.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="grupo">Grupo</label>
-                            <select name="grupo_options" class="form-control" id="grupo">
-                                <option value="Atendente" selected>Atendente</option>
-                                <option value="Gerente">Gerente</option>
-                            </select>
-                        </div>
-                    </div>
-                    <hr class="mb-4">
-                    <div class="mb-3">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="Digite seu e-mail...">
-                        <div class="invalid-feedback">
-                            Digite um e-mail válido.
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="senha">Senha</label>
-                        <input type="password" class="form-control" placeholder="Digite sua senha..." id="senha"
-                            minlength="5">
-                        <div class="invalid-feedback">
-                            A senha deve conter no mínimo 5 caracteres.
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="confirmSenha">Confirme sua senha</label>
-                        <input type="password" class="form-control" placeholder="Confirme a sua senha..."
-                            id="confirmSenha" minlength="5">
-                        <div class="invalid-feedback">
-                            As senhas precisam ser iguais.
-                        </div>
-                    </div>
-                    <hr class="mb-4">
-                    <div class="row">
-                        <div class="col-md-6 mb-2">
-                            <button class="btn btn-secondary btn-lg btn-block btn-cancelar" type="button" style="background: #6C757D">Cancelar
-                            </button>
-                        </div>
-                        <div class="col-md-6 mb-2">
-                            <button class="btn btn-primary btn-lg btn-block btn-confirmar" style="background: #EC1D25" type="button"> Confirmar
-                                alterações</button>
-                        </div>
-                    </div>
-                </form>
+        <div class="form-group">
+            <div class="linha">
+                <div class="campo">
+                    <label for="estoque">Estoque:</label>
+                    <input type="number" id="estoque" name="estoque" required>
+                </div>
+                <div class="campo">
+                    <label for="preco">Preço:</label>
+                    <input type="number" id="preco" name="preco" step="0.01" required>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-<div id="loadingModal" class="loading-modal">
-    <svg viewBox="25 25 50 50">
-        <circle r="20" cy="50" cx="50"></circle>
-    </svg>
-</div>
-<div class="card">
-    <div class="modal-confirm">
-        <p class="modal-heading">Alterações Realizada!</p>
-        <p class="modal-info">
-            Alteração realizada com sucesso!!
-        </p>
-        <div class="button-wrapper">
-            <button class="accept-cookie-button">OK</button>
+        <div class="form-group">
+            <label for="descricao">Descrição:</label>
+            <input type="text" id="descricao" name="descricao" required>
         </div>
+
+        <div class="EscolhaImg">
+            <label class="imagem1" for="imagemPrincipal" tabindex="0">
+                <span class="mainPicture__image">Clique para escolher a imagem do produto:</span>
+            </label>
+            <input type="file" id="imagemPrincipal" name="imagemPrincipal" required>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-2">
+                <button class="btn btn-secondary btn-lg btn-block btn-cancelar" type="button"
+                    style="background: #6C757D">Cancelar
+                </button>
+            </div>
+            <div class="col-md-6 mb-2">
+                <button type="button" class="btn btn-primary btn-lg btn-block btn-confirmar"
+                    style="background: #EC1D25">
+                    Alterar
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div id="confirmationModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <p id="modalMessage"></p>
+        <button type="button" class="btn-ok">OK</button>
     </div>
 </div>
-<script src="../js/alterarCadastroCliente.js"></script>
+
+<script src="../js/edicao-produto.js" defer></script>
