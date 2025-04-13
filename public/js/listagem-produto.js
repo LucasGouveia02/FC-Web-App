@@ -1,6 +1,6 @@
 export function init() {
 
-    const botaoCancelar = document.querySelector(".btn-cancelar");
+    var storeId = localStorage.getItem("storeId");
     let currentPage = 1;
     let totalPages = 0;
     let data = []; // Array para armazenar os dados dos produtos
@@ -8,7 +8,7 @@ export function init() {
 
     async function fetchData(page = 0) {
         try {
-            const response = await fetch(`http://localhost:8084/product/list?page=${page}`); // Substitua pela URL do seu backend
+            const response = await fetch(`http://localhost:8084/product/list?page=${page}&storeId=${storeId}`); // Substitua pela URL do seu backend
             const result = await response.json();
             data = result.products;
             totalPages = result.totalPages;

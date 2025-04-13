@@ -1,6 +1,6 @@
 export function init() {
 
-    var storeId = 1;
+    var storeId = localStorage.getItem("storeId");
     const botaoConfirmar = document.querySelector(".btn-confirmar");
     const botaoCancelar = document.querySelector(".btn-cancelar");
     const nome = document.getElementById('nomeProduto');
