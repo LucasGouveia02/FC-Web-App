@@ -1,0 +1,75 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/listagem-produto.css">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <title>Lista Pedidos</title>
+</head>
+
+<div id="main-content">
+    <div class="container">
+        <div class="header">
+            <span>Histórico de pedidos</span>
+        </div>
+        <div class="container-filtro">
+            <div class="filtro-usuarios">
+                <input id="filtro" type="text" placeholder="FILTRO DE PEDIDO AQUI">
+            </div>
+            <button id="buscar-filtro" type="button" class="btn btn-primary btn-lg btn-block btn-buscar"
+                style="background: #EC1D25">Buscar</i></button>
+        </div>
+        <div class="divTable">
+        </div>
+        <div id="pagination" class="pagination">
+            <!-- Botões de paginação serão gerados dinamicamente -->
+        </div>
+    </div>
+</div>
+
+<!-- desativa o clique no fundo da tela ao abrir o modal -->
+<div id="overlay" class="overlay"></div>
+
+<!-- modal visualização do produto -->
+<div class="card-produto">
+    <div class="modal-detalhe-prod-adm">
+        <div class="modal-heading">
+            <p class="text-preview">Preview do produto</p>
+            <button onclick="fecharModalProduto()" class="btn-fechar">
+                <span class="X"></span>
+                <span class="Y"></span>
+                <div class="close">Fechar</div>
+            </button>
+        </div>
+
+        <div class="produto">
+            <div class="imagens-prod">
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+
+                    </div>
+
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+            <div class="info-prod">
+                <p class="titulo-prod"></p>
+                <p class="valor-prod"></p>
+                <p class="avaliacao-prod"></p>
+                <p class="descricao-prod"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../js/listagem-produto.js" defer></script>
