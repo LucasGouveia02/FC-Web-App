@@ -48,17 +48,29 @@ export function init() {
 
         pedidosFiltrados.forEach(item => {
             const row = document.createElement('tr');
-
+        
             const dataFormatada = formatarData(item.orderDate)
-
+        
             row.innerHTML = `
-            <td>${item.id}</td>
-            <td>${item.customerId}</td>
-            <td>${item.orderStatus}</td>
-            <td>${2872}</td>
-            <td>${dataFormatada}</td>
-        `;
+                <td>
+                    <a href="#" class="abrir-modal" data-id="${item.id}">
+                        ${item.id}
+                    </a>
+                </td>
+                <td>${item.customerId}</td>
+                <td>${item.orderStatus}</td>
+                <td>${2872}</td>
+                <td>${dataFormatada}</td>
+            `;
             tableBody.appendChild(row);
+        });
+
+        document.querySelectorAll('.abrir-modal').forEach(link => {
+            link.addEventListener('click', function (event) {
+                event.preventDefault();
+                const pedidoId = this.getAttribute('data-id');
+                abrirModalComPedido(pedidoId);
+            });
         });
     }
 
@@ -84,6 +96,52 @@ export function init() {
     botaoBuscar.addEventListener("click", function () {
         filtrarProdutos();
     });
+
+    function abrirModalComPedido(pedidoId) {
+    const pedido = data.find(p => p.id == pedidoId);
+    if (!pedido) return;
+
+    const dataFormatada = formatarData(pedido.orderDate);
+
+    // Substituir os textos da timeline com base no status do pedido e data
+    const statusTexts = {
+        'PAYMENT': `Payment at ${dataFormatada}`,
+        'PREPARING': `Preparing at ${dataFormatada}`,
+        'AVAILABLE': `Available at ${dataFormatada}`,
+        'FINISHED': `Finished at ${dataFormatada}`
+    };
+
+    // Pegando os elementos da timeline
+    const steps = document.querySelectorAll('.modal-detalhe-prod-adm ul li');
+
+    steps.forEach((step, index) => {
+        const textElement = step.querySelector('.text');
+        switch (index) {
+            case 0:
+                textElement.innerText = statusTexts['PAYMENT'];
+                break;
+            case 1:
+                textElement.innerText = statusTexts['PREPARING'];
+                break;
+            case 2:
+                textElement.innerText = statusTexts['AVAILABLE'];
+                break;
+            case 3:
+                textElement.innerText = statusTexts['FINISHED'];
+                break;
+        }
+    });
+
+    // Exibir modal e overlay
+    document.querySelector('.modal-pedido').style.display = 'flex';
+    document.getElementById('overlay').style.display = 'block';
+}
+
+}
+
+function fecharModalPedido() {
+    document.querySelector('.modal-pedido').style.display = 'none';
+    document.getElementById('overlay').style.display = 'none';
 }
 
 function formatarData(dataISO) {
@@ -95,6 +153,12 @@ function formatarData(dataISO) {
     const minutos = String(data.getMinutes()).padStart(2, '0');
     return `${dia}/${mes}/${ano} às ${horas}:${minutos}h`;
 }
+
+// Fechar o modal quando clicar no overlay
+document.getElementById('overlay').addEventListener('click', fecharModalPedido);
+
+// Fechar o modal ao clicar no botão de fechar
+document.querySelector('.btn-fechar').addEventListener('click', fecharModalPedido);
 
 
 

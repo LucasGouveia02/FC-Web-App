@@ -1,0 +1,236 @@
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background-color: rgba(0, 0, 0, 0.76); */
+    z-index: 10; 
+    display: none; 
+}
+
+.modal-pedido {
+    z-index: 20; 
+} 
+
+.modal-pedido {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.76);
+}
+
+.timeline {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* margin-bottom: 20%; */
+}
+
+.modal-detalhe-pedido {
+    width: 75%;
+    height: 85%;
+    background-color: #ffffff;
+    border-radius: 10px;
+    border: 1px solid rgb(206, 206, 206);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 20px;
+    gap: 15px;
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.066);
+}
+
+.modal-heading {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    flex-direction: column;
+    /* gap: 10px;
+    margin-bottom: 30px; */
+}
+
+.titulo-modal {
+    font-size: 22px;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+}
+
+.btn-fechar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    color: #000;
+}
+
+.btn-fechar .X, .btn-fechar .Y {
+    display: flex; 
+    color: #000;
+}
+
+.btn-fechar .close {
+    color: red;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+ul {
+    display: flex;
+    /* margin-top: 50px; */
+    padding-left: 0;
+    margin-top: 5%;
+}
+
+ul li {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 30px;
+}
+
+ul li .icon {
+    font-size: 35px;
+    color: green;
+    margin: 0 60px;
+}
+
+ul li .text {
+    width: 120px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+    text-align: center;
+}
+
+ul li .progress {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    /* background-color: rgba(222, 222, 222, 0.781); */
+    background-color: green;
+    margin: 12px 0;
+    display: grid;
+    place-items: center;
+    color: #fff;
+    position: relative;
+}
+
+.progress::after {
+    content: " ";
+    position: absolute;
+    width: 185px;
+    height: 5px;
+    background-color: green;
+    /* right: 30px; */
+    top: 50%;
+    left: 100%;
+    transform: translateY(-50%);
+    z-index: 0;
+}
+
+ul li:last-child .progress::after {
+    display: none;
+}
+
+.one::after {
+    width: 0;
+    height: 0;
+}
+
+ul li .progress .uil {
+    display: flex;
+    color: #fff;
+}
+
+ul li .progress p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.uil-check {
+    font-size: 20px;
+}
+
+.tabela-produtos-container {
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    /* margin-top: 20px; */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.tabela-produtos {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.tabela-produtos th,
+.tabela-produtos td {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+}
+
+.tabela-produtos th {
+    background-color: #f5f5f5;
+    font-weight: 600;
+}
+
+.valor-total-pedido {
+    align-self: flex-start;
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.btn-avancar-etapa {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-avancar-etapa:hover {
+    background-color: #218838;
+}
+
+

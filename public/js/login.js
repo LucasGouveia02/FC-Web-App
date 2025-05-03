@@ -4,7 +4,6 @@
 //         window.location.href = "/pages/index.html";
 //         // validarLogin();
 //     });
-    
 // });
 
 const formulario = document.querySelector("form");
@@ -12,7 +11,6 @@ const email = document.querySelector(".email");
 const senha = document.querySelector(".senha");
 const btnLogin = document.querySelector(".btn-login");
 const show = document.querySelector(".modal-confirm");
-
 
 function validarLogin() {
     const login = {
