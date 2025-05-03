@@ -2,6 +2,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/listagem-produto.css">
+    <link rel="stylesheet" href="../css/listagem-pedidos.css">
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,6 +12,8 @@
         rel="stylesheet">
 
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
 
     <title>Lista Pedidos</title>
 </head>
@@ -38,38 +41,80 @@
 <!-- desativa o clique no fundo da tela ao abrir o modal -->
 <div id="overlay" class="overlay"></div>
 
-<!-- modal visualização do produto -->
-<div class="card-produto">
-    <div class="modal-detalhe-prod-adm">
+<div class="modal-pedido">
+    <div class="modal-detalhe-pedido">
         <div class="modal-heading">
-            <p class="text-preview">Preview do produto</p>
+            <h2 class="titulo-modal">Detalhes do Pedido</h2>
             <button onclick="fecharModalProduto()" class="btn-fechar">
-                <span class="X"></span>
-                <span class="Y"></span>
+                <i class="uil uil-times"></i>
                 <div class="close">Fechar</div>
             </button>
         </div>
 
-        <div class="produto">
-            <div class="imagens-prod">
-                <div class="swiper">
-                    <div class="swiper-wrapper">
-
-                    </div>
-
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-pagination"></div>
-                </div>
-            </div>
-            <div class="info-prod">
-                <p class="titulo-prod"></p>
-                <p class="valor-prod"></p>
-                <p class="avaliacao-prod"></p>
-                <p class="descricao-prod"></p>
-            </div>
+        <div class="timeline">
+            <ul>
+                <li>
+                    <i class="icon uil uil-money-bill"></i>
+                    <div class="progress one"><i class="uil uil-check"></i></div>
+                    <p class="text">Payment at 02/05/2025 on 17:31</p>
+                </li>
+                <li>
+                    <i class="icon uil uil-crockery"></i>
+                    <div class="progress two"><i class="uil uil-check"></i></div>
+                    <p class="text">Preparing at 02/05/2025 on 17:31</p>
+                </li>
+                <li>
+                    <i class="icon uil uil-map-marker"></i>
+                    <div class="progress three"><i class="uil uil-check"></i></div>
+                    <p class="text">Available at 02/05/2025 on 17:31</p>
+                </li>
+                <li>
+                    <i class="icon uil uil-check-square"></i>
+                    <div class="progress four"><i class="uil uil-check"></i></div>
+                    <p class="text">Finished at 02/05/2025 on 17:31</p>
+                </li>
+            </ul>
         </div>
+        <div class="tabela-produtos-container">
+            <table class="tabela-produtos">
+                <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th>Quantidade</th>
+                        <th>Valor Unitário</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Pizza Margherita</td>
+                        <td>2</td>
+                        <td>R$ 35,00</td>
+                        <td>R$ 70,00</td>
+                    </tr>
+                    <tr>
+                        <td>Suco de Laranja</td>
+                        <td>1</td>
+                        <td>R$ 8,00</td>
+                        <td>R$ 8,00</td>
+                    </tr>
+                    <tr>
+                        <td>Suco de Laranja</td>
+                        <td>1</td>
+                        <td>R$ 8,00</td>
+                        <td>R$ 8,00</td>
+                    </tr>
+                    <!-- Adicione mais linhas conforme necessário -->
+                </tbody>
+            </table>
+        </div>
+        
+        <p class="valor-total-pedido">Total do Pedido: <strong>R$ 78,00</strong></p>
+        
+        <button class="btn-avancar-etapa">Avançar Etapa</button>
+
     </div>
 </div>
+
 
 <script src="../js/listagem-pedidos.js" defer></script>
