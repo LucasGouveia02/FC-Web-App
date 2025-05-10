@@ -1,0 +1,31 @@
+.btn-editar:hover {
+    color: black;
+}
+
+.btn-editar:hover {
+    background-color: #F31C1CE0;
+    transform: translateY(-2px);
+}
+.btn-editar {
+    background-color: #F31C1CE0;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.table-white th {
+    background-color: #fcf7f7; 
+    color: black; 
+    text-align: center; 
+    padding: 10px; 
+}
+.table-white tbody {
+    background-color: white; 
+}
+
+h1 {
+    font-size: 24px; 
+}
