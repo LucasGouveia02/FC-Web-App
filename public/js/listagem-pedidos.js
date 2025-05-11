@@ -7,12 +7,13 @@ export function init() {
     let data = []; // Array para armazenar os dados dos produtos
     fetchData();
 
-    async function fetchData(page = 0, size = 10) {
+    async function fetchData(page = 0) {
         try {
-            const response = await fetch(`http://localhost:8085/orders/list?storeId=${storeId}&page=${page}&size=${size}`);
+            const response = await fetch(`http://localhost:8085/orders/list?storeId=${storeId}&page=${page}`);
             const result = await response.json();
-
-            data = result.orders;
+            console.log(result);
+            data = result.content;
+            console.log(data);
             totalPages = result.totalPages;
             displayTableData();
             setupPagination();
@@ -23,45 +24,51 @@ export function init() {
     }
 
     function displayTableData() {
+        
         const tabela = document.querySelector('.divTable');
 
         tabela.innerHTML = `
-                            <table>
-                                <thead> 
-                                    <tr>       
-                                        <th>Número do pedido</th>
-                                        <th>Cliente</th>
-                                        <th>Status</th>
-                                        <th>Cód. Retirada</th>
-                                        <th>Data</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="table-body">
-                                </tbody>
-                            </table>
-                        `;
+        <table>
+            <thead> 
+                <tr>       
+                    <th>Número do Pedido</th>
+                    <th>Cliente</th>
+                    <th>Status</th>
+                    <th>Cód. Retirada</th>
+                    <th>Data do Pedido</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+            </tbody>
+        </table>
+    `;
         const tableBody = document.getElementById('table-body');
         tableBody.innerHTML = '';
 
-        // Filtro para trazer apenas os pedidos que estão em andamento.
-        const pedidosFiltrados = data.filter(item => item.orderStatus !== 'FINISHED' && item.orderStatus !== 'CANCELED');
+        const pedidosFiltrados = data.filter(item => {
+            const statusMaisRecente = item.statusList?.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))[0];
+            return statusMaisRecente && statusMaisRecente.orderStatus !== 'FINISHED' && statusMaisRecente.orderStatus !== 'CANCELED';
+        });
 
+        console.log(pedidosFiltrados);
+        
         pedidosFiltrados.forEach(item => {
+            const dataFormatada = formatarData(item.orderDate);
+            const statusMaisRecente = item.statusList?.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))[0];
+            const statusExibido = statusTraduzido[statusMaisRecente.orderStatus] || statusMaisRecente.orderStatus;
+
             const row = document.createElement('tr');
-        
-            const dataFormatada = formatarData(item.orderDate)
-        
             row.innerHTML = `
-                <td>
-                    <a href="#" class="abrir-modal" data-id="${item.id}">
-                        ${item.id}
-                    </a>
-                </td>
-                <td>${item.customerId}</td>
-                <td>${item.orderStatus}</td>
-                <td>${2872}</td>
-                <td>${dataFormatada}</td>
-            `;
+            <td>
+                <a href="#" class="abrir-modal" data-id="${item.id}">
+                    ${item.id}
+                </a>
+            </td>
+            <td>${item.customerId.name}</td>
+            <td>${statusExibido}</td>
+            <td>${2872}</td>
+            <td>${dataFormatada}</td>
+        `;
             tableBody.appendChild(row);
         });
 
@@ -93,50 +100,127 @@ export function init() {
         }
     }
 
+    function abrirModalComPedido(pedidoId) {
+        const statusSteps = ['PAID', 'PREPARING', 'AVAILABLE', 'FINISHED'];
+
+        const pedido = data.find(p => p.id == pedidoId);
+        if (!pedido) return;
+
+        // Cria um map com os status realizados e suas datas
+        const statusConcluidos = {};
+        pedido.statusList.forEach(s => {
+            statusConcluidos[s.orderStatus] = s.updatedAt;
+        });
+
+        // Atualizar status da timeline
+        const steps = document.querySelectorAll('.modal-detalhe-pedido ul li');
+        steps.forEach((step, index) => {
+            const progress = step.querySelector('.progress');
+            const iconCheck = progress.querySelector('i');
+            const text = step.querySelector('.text');
+
+            const statusAtual = statusSteps[index];
+            const dataAtual = statusConcluidos[statusAtual];
+
+            if (dataAtual) {
+                progress.classList.add('completed');
+                iconCheck.style.visibility = 'visible';
+                text.innerText = `${statusTraduzido[statusAtual]} em ${formatarData(dataAtual)}`;
+            } else {
+                progress.classList.remove('completed');
+                iconCheck.style.visibility = 'hidden';
+                text.innerText = statusTraduzido[statusAtual];
+            }
+        });
+
+        // Preencher tabela de itens do pedido
+        const tabelaBody = document.querySelector('.tabela-produtos tbody');
+        tabelaBody.innerHTML = '';
+
+        let totalPedido = 0;
+
+        pedido.items.forEach(item => {
+            const produto = item.id.productId;
+            const totalItem = produto.price * item.quantity;
+            totalPedido += totalItem;
+
+            const row = document.createElement('tr');
+            row.innerHTML = `
+            <td>${produto.name}</td>
+            <td>${item.quantity}</td>
+            <td>R$ ${produto.price.toFixed(2).replace('.', ',')}</td>
+            <td>R$ ${totalItem.toFixed(2).replace('.', ',')}</td>
+        `;
+            tabelaBody.appendChild(row);
+        });
+
+        // Atualizar total do pedido
+        const totalPedidoElement = document.querySelector('.valor-total-pedido strong');
+        totalPedidoElement.innerText = `R$ ${totalPedido.toFixed(2).replace('.', ',')}`;
+
+        // Exibir modal
+        document.querySelector('.modal-pedido').style.display = 'flex';
+        document.getElementById('overlay').style.display = 'block';
+
+        // Atribuir ação ao botão "Avançar Etapa"
+        const btnAvancar = document.querySelector('.btn-avancar-etapa');
+        btnAvancar.onclick = () => avancarEtapa(pedidoId);
+    }
+
+
+    async function avancarEtapa(pedidoId) {
+        const pedido = data.find(p => p.id == pedidoId);
+        if (!pedido) {
+            alert("Pedido não encontrado.");
+            return;
+        }
+
+        const employeeId = localStorage.getItem("employeeId"); 
+
+        const statusSequencia = ['PAID', 'PREPARING', 'AVAILABLE', 'FINISHED'];
+
+        const statusMaisRecente = pedido.statusList?.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))[0];
+        const statusAtual = statusMaisRecente?.orderStatus;
+
+        const statusAtualIndex = statusSequencia.indexOf(statusAtual);
+        const proximoStatus = statusSequencia[statusAtualIndex + 1];
+
+        if (!proximoStatus) {
+            alert("Pedido já está na última etapa.");
+            return;
+        }
+
+        const payload = {
+            orderId: pedidoId,
+            employeeId: parseInt(employeeId),
+            orderStatus: proximoStatus
+        };
+
+        try {
+            const response = await fetch(`http://localhost:8085/orders/updstatus`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            if (response.ok) {
+                alert("Etapa avançada com sucesso!");
+                fecharModalPedido();
+                fetchData(currentPage - 1); // Atualiza a lista
+            } else {
+                alert("Erro ao avançar etapa do pedido.");
+            }
+        } catch (error) {
+            console.error("Erro ao enviar requisição:", error);
+            alert("Erro na conexão com o servidor.");
+        }
+    }
+
     botaoBuscar.addEventListener("click", function () {
         filtrarProdutos();
     });
-
-    function abrirModalComPedido(pedidoId) {
-    const pedido = data.find(p => p.id == pedidoId);
-    if (!pedido) return;
-
-    const dataFormatada = formatarData(pedido.orderDate);
-
-    // Substituir os textos da timeline com base no status do pedido e data
-    const statusTexts = {
-        'PAYMENT': `Payment at ${dataFormatada}`,
-        'PREPARING': `Preparing at ${dataFormatada}`,
-        'AVAILABLE': `Available at ${dataFormatada}`,
-        'FINISHED': `Finished at ${dataFormatada}`
-    };
-
-    // Pegando os elementos da timeline
-    const steps = document.querySelectorAll('.modal-detalhe-prod-adm ul li');
-
-    steps.forEach((step, index) => {
-        const textElement = step.querySelector('.text');
-        switch (index) {
-            case 0:
-                textElement.innerText = statusTexts['PAYMENT'];
-                break;
-            case 1:
-                textElement.innerText = statusTexts['PREPARING'];
-                break;
-            case 2:
-                textElement.innerText = statusTexts['AVAILABLE'];
-                break;
-            case 3:
-                textElement.innerText = statusTexts['FINISHED'];
-                break;
-        }
-    });
-
-    // Exibir modal e overlay
-    document.querySelector('.modal-pedido').style.display = 'flex';
-    document.getElementById('overlay').style.display = 'block';
-}
-
 }
 
 function fecharModalPedido() {
@@ -153,6 +237,13 @@ function formatarData(dataISO) {
     const minutos = String(data.getMinutes()).padStart(2, '0');
     return `${dia}/${mes}/${ano} às ${horas}:${minutos}h`;
 }
+
+const statusTraduzido = {
+    'PAID': 'Pagamento',
+    'PREPARING': 'Preparando',
+    'AVAILABLE': 'Disponível',
+    'FINISHED': 'Finalizado'
+};
 
 // Fechar o modal quando clicar no overlay
 document.getElementById('overlay').addEventListener('click', fecharModalPedido);
