@@ -5,13 +5,13 @@
     width: 100%;
     height: 100%;
     /* background-color: rgba(0, 0, 0, 0.76); */
-    z-index: 10; 
-    display: none; 
+    z-index: 10;
+    display: none;
 }
 
 .modal-pedido {
-    z-index: 20; 
-} 
+    z-index: 20;
+}
 
 .modal-pedido {
     position: fixed;
@@ -81,8 +81,9 @@
     color: #000;
 }
 
-.btn-fechar .X, .btn-fechar .Y {
-    display: flex; 
+.btn-fechar .X,
+.btn-fechar .Y {
+    display: flex;
     color: #000;
 }
 
@@ -129,6 +130,11 @@ ul li .text {
     font-weight: 600;
     color: #000;
     text-align: center;
+
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 ul li .progress {
@@ -229,8 +235,158 @@ ul li .progress p {
     cursor: pointer;
 }
 
-.btn-avancar-etapa:hover {
-    background-color: #218838;
+.timeline .progress {
+    background-color: #ddd;
+    /* cinza claro */
+    border: 2px solid #ccc;
+    color: #ccc;
 }
 
+.timeline .progress.completed {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+    color: white;
+}
 
+.pagination button {
+    margin: 5px;
+    padding: 8px 16px;
+    background-color: #f9f9f9;
+    color: black;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.pagination button:hover {
+    background-color: black;
+    color: white;
+}
+
+.pagination button.active {
+    background-color: black;
+    color: white;
+}
+
+.pagination button:disabled {
+    background-color: #e9ecef;
+    color: #6c757d;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.pagination button {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+.pagination button.active {
+    background-color: #EC1D25;
+    color: white;
+}
+
+.pagination button:disabled {
+    background-color: #e9ecef;
+}
+
+@media (max-width: 480px) {
+    .header span {
+        font-size: 16px;
+    }
+
+    #new,
+    #buscar-filtro {
+        padding: 5px;
+        font-size: 14px;
+    }
+
+    th,
+    td {
+        font-size: 10px;
+        padding: 6px;
+    }
+
+    .pagination button {
+        padding: 4px 8px;
+        font-size: 12px;
+    }
+}
+
+.divTable {
+    padding: 10px;
+    width: 100%;
+    height: auto;
+    overflow-x: auto;
+    box-sizing: border-box;
+}
+
+table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: whitesmoke;
+}
+
+th,
+td {
+    word-wrap: break-word;
+    padding: 10px;
+    text-align: center;
+    /* Alinha o conteúdo nas células */
+    vertical-align: middle;
+    /* Alinha o conteúdo verticalmente ao centro */
+}
+
+tbody tr td {
+    vertical-align: middle;
+    /* Alinha o conteúdo das células ao centro */
+    padding: 10px;
+}
+
+thead tr th.acao,
+tbody tr td.acao {
+    width: 100px !important;
+}
+
+td img {
+    max-width: 50px;
+    max-height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+    vertical-align: middle;
+    box-shadow: 0 1px 2px #0003;
+    height: 200px;
+}
+
+td button {
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    background: #EC1D25;
+    font-size: 16px;
+    color: white;
+    padding: 5px;
+    transition: color 0.3s ease;
+}
+
+td button i {
+    font-size: 20px;
+}
+
+td button i:first-child {
+    margin-right: 10px;
+}
+
+tbody tr {
+    border-bottom: 1px solid rgb(238, 235, 235);
+}
