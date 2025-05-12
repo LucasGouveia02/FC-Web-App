@@ -35,7 +35,6 @@ export function init() {
                     <th>Número do Pedido</th>
                     <th>Cliente</th>
                     <th>Status</th>
-                    <th>Cód. Retirada</th>
                     <th>Data do Pedido</th>
                 </tr>
             </thead>
@@ -69,7 +68,6 @@ export function init() {
             </td>
             <td>${item.customerId.name}</td>
             <td>${statusExibido}</td>
-            <td>${2872}</td>
             <td>${dataFormatada}</td>
         `;
             tableBody.appendChild(row);
