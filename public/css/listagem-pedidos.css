@@ -390,3 +390,37 @@ td button i:first-child {
 tbody tr {
     border-bottom: 1px solid rgb(238, 235, 235);
 }
+
+.modal-codigo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+}
+
+.modal-conteudo {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.modal-conteudo input {
+    width: 80%;
+    padding: 8px;
+    margin-top: 10px;
+}
+
+.modal-botoes {
+    margin-top: 15px;
+}
+
+.modal-botoes button {
+    margin: 0 10px;
+}
