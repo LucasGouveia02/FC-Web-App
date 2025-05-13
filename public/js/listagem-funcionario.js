@@ -1,5 +1,5 @@
 export function init() {
-    const apiUrl = 'http://localhost:8083/employee/all';
+    const apiUrl = 'http://4.201.144.173:8083/employee/all';
 
     // Função para buscar os dados da API
     async function fetchEmployees() {

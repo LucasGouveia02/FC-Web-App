@@ -10,7 +10,7 @@ export function init() {
     async function fetchData(page = 0) {
         try {
             currentPage = page + 1; // Corrigir a numeração da página exibida
-            const response = await fetch(`http://localhost:8085/orders/list?storeId=${storeId}&page=${page}`);
+            const response = await fetch(`http://4.201.144.173:8085/orders/list?storeId=${storeId}&page=${page}`);
             const result = await response.json();
             console.log(result);
             data = result.content;
@@ -195,7 +195,7 @@ export function init() {
         };
 
         try {
-            const response = await fetch(`http://localhost:8085/orders/updstatus`, {
+            const response = await fetch(`http://4.201.144.173:8085/orders/updstatus`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -235,7 +235,7 @@ export function init() {
             try {
                 const employeeId = localStorage.getItem("employeeId");
 
-                const response = await fetch(`http://localhost:8085/orders/validate-code`, {
+                const response = await fetch(`http://4.201.144.173:8085/orders/validate-code`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json'

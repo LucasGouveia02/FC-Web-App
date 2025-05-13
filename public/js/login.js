@@ -18,7 +18,7 @@ function validarLogin() {
         "password": senha.value
     };
 
-    fetch('http://localhost:8082/login/employeeAccess', {
+    fetch('http://4.201.144.173:8082/login/employeeAccess', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

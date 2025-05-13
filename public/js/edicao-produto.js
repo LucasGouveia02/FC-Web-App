@@ -12,7 +12,7 @@ export function init() {
     const categoria = document.getElementById('categoria');
 
     function acessarProduto(productId) {
-        fetch(`http://localhost:8084/product/listById?id=${productId}`)
+        fetch(`http://4.201.144.173:8084/product/listById?id=${productId}`)
             .then(response => response.json())
             .then(produto => {
                 nome.value = produto.name;
@@ -81,7 +81,7 @@ export function init() {
 
         try {
             mostrarLoading();
-            const response = await fetch(`http://localhost:8084/product/update?id=${productId}`, {
+            const response = await fetch(`http://4.201.144.173:8084/product/update?id=${productId}`, {
                 method: 'PUT',
                 body: formData
             });
