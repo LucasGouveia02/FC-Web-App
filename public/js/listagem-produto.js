@@ -9,7 +9,7 @@ export function init() {
 
     async function fetchData(page = 0) {
         try {
-            const response = await fetch(`http://localhost:8084/product/list?page=${page}&storeId=${storeId}`); // Substitua pela URL do seu backend
+            const response = await fetch(`http://4.201.144.173:8084/product/list?page=${page}&storeId=${storeId}`); // Substitua pela URL do seu backend
             const result = await response.json();
             data = result.products;
             totalPages = result.totalPages;
@@ -101,7 +101,7 @@ export function init() {
     
         async function fetchFilteredData(page = 0) {
             try {
-                const response = await fetch(`http://localhost:8084/product/listByNameAndStoreId?name=${filtro}&storeId=${storeId}&page=${page}`);
+                const response = await fetch(`http://4.201.144.173:8084/product/listByNameAndStoreId?name=${filtro}&storeId=${storeId}&page=${page}`);
     
                 // Se a API retornar 404, exibe a mensagem de produto não encontrado
                 if (response.status === 404) {
@@ -153,7 +153,7 @@ window.abrirModalConfirmacao = function(id, isProdAtivo) {
 }
 
 window.habilitarProduto = async function(id) {
-    const endpoint = `http://localhost:8084/product/enable?id=${id}`;
+    const endpoint = `http://4.201.144.173:8084/product/enable?id=${id}`;
     try {
         const response = await fetch(endpoint, {
             method: 'PATCH'
@@ -172,7 +172,7 @@ window.habilitarProduto = async function(id) {
 }
 
 window.desabilitarProduto = async function(id) {
-    const endpoint = `http://localhost:8084/product/disable?id=${id}`;
+    const endpoint = `http://4.201.144.173:8084/product/disable?id=${id}`;
     try {
         const response = await fetch(endpoint, {
             method: 'PATCH'

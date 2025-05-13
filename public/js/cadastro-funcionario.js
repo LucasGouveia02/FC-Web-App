@@ -27,7 +27,7 @@ export function init() {
             storeId: storeId
         };
 
-        fetch("http://localhost:8083/employee/register", {
+        fetch("http://4.201.144.173:8083/employee/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

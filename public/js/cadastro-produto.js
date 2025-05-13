@@ -63,7 +63,7 @@ export function init() {
 
         try {
             mostrarLoading();
-            const response = await fetch('http://localhost:8084/product/register', {
+            const response = await fetch('http://4.201.144.173:8084/product/register', {
                 method: 'POST',
                 body: formData
             });

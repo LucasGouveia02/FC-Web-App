@@ -35,7 +35,7 @@ export function init(userId) {
     grupo.addEventListener("change", atualizarCampos);
 
     // Buscar e preencher os dados do usuário
-    fetch(`http://localhost:8083/employee/user/${userId}`)
+    fetch(`http://4.201.144.173:8083/employee/user/${userId}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error("Erro ao carregar os dados do usuário.");
@@ -81,7 +81,7 @@ export function init(userId) {
 
         if (validarTelefone()) {
 
-            fetch(`http://localhost:8083/employee/alter/${userId}`, {
+            fetch(`http://4.201.144.173:8083/employee/alter/${userId}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"

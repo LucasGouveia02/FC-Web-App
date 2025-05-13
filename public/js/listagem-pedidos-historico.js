@@ -10,7 +10,7 @@ export function init() {
     async function fetchData(page = 0) {
         try {
             currentPage = page + 1
-            const response = await fetch(`http://localhost:8085/orders/list?storeId=${storeId}&page=${page}`);
+            const response = await fetch(`http://4.201.144.173:8085/orders/list?storeId=${storeId}&page=${page}`);
             const result = await response.json();
             console.log("Total pedidos recebidos:", result.content.length);
             console.log("Total de páginas:", result.totalPages);
