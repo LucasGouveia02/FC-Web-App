@@ -10,7 +10,7 @@ export function init() {
     async function fetchData(page = 0) {
         try {
             currentPage = page + 1; // Corrigir a numeração da página exibida
-            const response = await fetch(`http://4.201.144.173:8085/orders/list?storeId=${storeId}&page=${page}`);
+            const response = await fetch(`http://4.201.144.173:8085/orders/list?storeId=${storeId}&excludeStatus=CANCELED&excludeStatus=FINISHED&page=${page}`);
             const result = await response.json();
             console.log(result);
             data = result.content;
@@ -41,12 +41,7 @@ export function init() {
         const tableBody = document.getElementById('table-body');
         tableBody.innerHTML = '';
 
-        const pedidosFiltrados = data.filter(item => {
-            const statusMaisRecente = item.statusList?.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))[0];
-            return statusMaisRecente && statusMaisRecente.orderStatus !== 'FINISHED' && statusMaisRecente.orderStatus !== 'CANCELED';
-        });
-
-        pedidosFiltrados.forEach(item => {
+        data.forEach(item => {
             const dataFormatada = formatarData(item.orderDate);
             const statusMaisRecente = item.statusList?.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))[0];
             const statusExibido = statusTraduzido[statusMaisRecente.orderStatus] || statusMaisRecente.orderStatus;
@@ -102,7 +97,7 @@ export function init() {
             statusConcluidos[s.orderStatus] = s.updatedAt;
         });
 
-        const steps = document.querySelectorAll('.modal-detalhe-pedido ul li');
+        const steps = document.querySelectorAll('.modal-detalhe-pedido .timeline-list .timeline-item');
         steps.forEach((step, index) => {
             const progress = step.querySelector('.progress');
             const iconCheck = progress.querySelector('i');
