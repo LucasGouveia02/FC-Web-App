@@ -102,14 +102,13 @@
     flex-direction: column;
 }
 
-ul {
+.timeline-list {
     display: flex;
-    /* margin-top: 50px; */
     padding-left: 0;
     margin-top: 5%;
 }
 
-ul li {
+.timeline-list li {
     list-style: none;
     display: flex;
     flex-direction: column;
@@ -156,7 +155,6 @@ ul li .progress {
     width: 185px;
     height: 5px;
     background-color: green;
-    /* right: 30px; */
     top: 50%;
     left: 100%;
     transform: translateY(-50%);
