@@ -29,3 +29,182 @@
 h1 {
     font-size: 24px; 
 }
+#buscar-filtro {
+    padding: 10px 20px;
+    font-size: 15px;
+    background-color: #28a745;
+}
+
+#buscar-filtro {
+    padding: 10px 20px;
+    font-size: 15px;
+    background-color: #28a745;
+}
+
+#new:hover,
+#buscar-filtro:hover {
+    background-color: black;
+    color: white;
+}
+
+#new:active,
+#buscar-filtro:active {
+    background-color: #1e7e34;
+}
+
+.pagination button {
+    margin: 5px;
+    padding: 8px 16px;
+    background-color: #f9f9f9;
+    color: black;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.pagination button:hover {
+    background-color: black;
+    color: white;
+}
+
+.pagination button.active {
+    background-color: black;
+    color: white;
+}
+
+.pagination button:disabled {
+    background-color: #e9ecef;
+    color: #6c757d;
+}
+
+.header {
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 8px;
+    flex-wrap: wrap;
+}
+
+.header span {
+    font-weight: 900;
+    font-size: 20px;
+    word-break: break-all;
+}
+
+#new {
+    font-size: 25px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    background-color: rgb(57, 57, 226);
+}
+
+#buscar-filtro {
+    font-size: 15px;
+    padding: 3px 12px;
+    border-radius: 3px;
+    border: none;
+    color: white;
+    background-color: rgb(57, 57, 226);
+}
+
+.container {
+    margin: 20px auto;
+    max-width: 1200px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+}
+
+.header {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.container-filtro {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.divTable {
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+td button {
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    background: #F31C1CE0;
+    font-size: 16px;
+    color: white;
+    padding: 5px;
+    transition: color 0.3s ease;
+}
+
+td button i {
+    font-size: 20px;
+}
+
+td button i:first-child {
+    margin-right: 10px;
+}
+.btn-editar{
+    background-color: #F31C1CE0;
+}
+
+
+
+.container-filtro {
+    width: 100%;
+    margin: 0.5% 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.filtro-usuarios #filtro {
+    width: 120%;
+    max-width: 600px;
+    height: 35px;
+    border: 2px solid #8d8d8d;
+    border-radius: 13px;
+    padding-left: 12px;
+}
+
+td {
+    text-align: center; 
+    vertical-align: middle; 
+}
+
+tr {
+   background-color: #8d8d8d; 
+   border-top: none; 
+    border-bottom: none; 
+}
+tbody tr {
+    border-top: none; 
+    border-bottom: none;
+}
+table {
+    border-collapse: collapse; 
+}
+
+table, th, td {
+    border: none;
+
+tbody tr {
+    border-bottom: none; 
+}

@@ -19,7 +19,7 @@ export function init() {
                 row.innerHTML = `
                     <td>${employee.id}</td>
                     <td>${employee.name}</td>
-                    <td>${employee.phoneNumber}</td>
+                    <td>${formatPhoneNumber(employee.phoneNumber)}</td>
                     <td>${employee.email}</td>
                     <td>${employee.role}</td>
                     <td class="text-center">
@@ -58,6 +58,17 @@ export function init() {
             console.error('Erro ao carregar a página de edição:', error);
         }
     }
+    function formatPhoneNumber(phoneNumber) {
+        const cleaned = phoneNumber.replace(/\D/g, '');
+        const match = cleaned.match(/^(\d{2})(\d{5})(\d{4})$/);
+        if (match) {
+            return `(${match[1]}) ${match[2]}-${match[3]}`;
+        }
+    
+        
+        return phoneNumber;
+    }
+    
 
     // Chama a função para buscar os funcionários ao carregar a página
     fetchEmployees();
