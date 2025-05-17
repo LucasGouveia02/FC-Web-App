@@ -7,22 +7,37 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/listagem-funcionario.css">
 </head>
-    <div class="container mt-5">
-        <h1 class="mb-4">Listagem de Funcionários</h1>
-        <table class="table table-bordered">
-            <thead class="table-white">
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Telefone</th>
-                    <th>E-mail</th>
-                    <th>Cargo</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody id="employee-table-body">
-            </tbody>
-        </table>
+<div id="main-content">
+    <div class="container">
+        <div class="header">
+            <span>Listagem de Funcionários</span>
+        </div>
+        <div class="container-filtro">
+            <div class="filtro-usuarios">
+                <input id="filtro" type="text" placeholder="Digite o nome do funcionário">
+            </div>
+            <button id="buscar-filtro" type="button" class="btn btn-primary btn-lg btn-block btn-buscar" style="background: #EC1D25">Buscar</button>
+        </div>
+        <div class="divTable">
+            <table class="table table-bordered">
+                <thead class="table-white">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Telefone</th>
+                        <th>E-mail</th>
+                        <th>Cargo</th>
+                        <th>Editar</th>
+                    </tr>
+                </thead>
+                <tbody id="employee-table-body">
+                    <!-- Linhas da tabela serão geradas dinamicamente -->
+                </tbody>
+            </table>
+        </div>
+        <div id="pagination" class="pagination">
+            <!-- Botões de paginação serão gerados dinamicamente -->
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
