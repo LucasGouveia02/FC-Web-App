@@ -92,8 +92,15 @@ function runPageScript(page) {
 
 // Função de logout
 function logout() {
+    localStorage.clear();
+    sessionStorage.clear();
     alert("Saindo do sistema...");
-    window.location.href = "login.html"; // Redirecionamento fictício
+
+    // Redireciona para a página de login
+    window.location.href = "http://localhost:3000/login.html";
+
+    // Substitui o histórico para impedir o retorno
+    window.history.replaceState(null, null, "http://localhost:3000/login.html");
 }
 
 document.addEventListener("DOMContentLoaded", function () {
