@@ -52,6 +52,7 @@ function validarLogin() {
                 localStorage.setItem("foodCourt", data.foodCourt);
 
                 loginSucedido();
+                
             } else {
                 alert('Usuário inativo. Por favor, entre em contato com o administrador.');
             }
@@ -86,7 +87,6 @@ function validarCampos() {
 function loginSucedido() {
     const modal = document.querySelector('.cartao');
     const btnTelaInicial = document.querySelector('.inicial');
-    
 
     const openModal = () => {
         modal.style.display = 'flex';
@@ -97,8 +97,8 @@ function loginSucedido() {
     btnTelaInicial.addEventListener('click', function (event) {
         event.preventDefault();
         window.location.replace("/pages/index.html");
-    });
     
+    });    
 }
 
 function loginInvalido() {
