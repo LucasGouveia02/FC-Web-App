@@ -1,4 +1,7 @@
 var homeElement = document.querySelector(".home");
+document.addEventListener("DOMContentLoaded", function () {
+    employeeAuthentication();
+});
 
 
 // Função para carregar páginas dinamicamente na div #content
@@ -11,8 +14,8 @@ function loadPage(page, element) {
                 element = homeElement; // Se não houver elemento, use o padrão
             }
             highlightMenuItem(element);
-
             employeeAuthentication();
+
         })
         .catch(error => console.error("Erro ao carregar a página:", error));
 }
@@ -93,6 +96,89 @@ function logout() {
     window.location.href = "login.html"; // Redirecionamento fictício
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+    setInitialStoreStatus(); 
+    employeeAuthentication(); 
+});
+let pendingStatusChange = null;
+
+function setInitialStoreStatus() {
+    const toggle = document.getElementById('statusToggle');
+    const label = document.getElementById('statusLabel');
+    const storeId = 1;
+
+    fetch(`http://localhost:8083/store/status?storeId=${storeId}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Erro ao obter status da loja");
+            }
+            return response.json(); // true ou false
+        })
+        .then(isOpen => {
+            toggle.checked = isOpen;
+            label.textContent = isOpen ? 'Open' : 'Closed';
+        })
+        .catch(error => {
+            console.error("Erro ao definir status inicial da loja:", error);
+        });
+}
+
+function handleToggle(input) {
+    const isOpen = input.checked;
+    const label = document.getElementById('statusLabel');
+
+    input.checked = !isOpen;
+
+    pendingStatusChange = { isOpen, input, label };
+
+    document.getElementById("modalAction").textContent = isOpen ? "abrir" : "fechar";
+    console.log("Modal action set to:", isOpen ? "abrir" : "fechar");
+
+    const modal = new bootstrap.Modal(document.getElementById("statusModal"));
+    modal.show();
+}
+
+document.getElementById("confirmToggle").addEventListener("click", function () {
+    if (!pendingStatusChange) return;
+
+    const { isOpen, input, label } = pendingStatusChange;
+    const storeId = 1;
+
+    // Atualiza visualmente
+    input.checked = isOpen;
+    label.textContent = isOpen ? 'Open' : 'Closed';
+
+    fetch(`http://localhost:8083/store/openClose?open=${isOpen}&storeId=${storeId}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Erro na resposta do servidor");
+            }
+            return response.text(); 
+        })
+        .then(data => {
+            console.log("Status da loja atualizado:", data);
+        })
+        .catch(error => {
+            console.error("Erro ao atualizar o status da loja:", error);
+            // Reverte se der erro
+            input.checked = !isOpen;
+            label.textContent = !isOpen ? 'Open' : 'Closed';
+        });
+
+    pendingStatusChange = null;
+
+    // Fecha o modal
+    bootstrap.Modal.getInstance(document.getElementById("statusModal")).hide();
+});
+
+
+
+
 function employeeAuthentication() {
     const employeeRole = localStorage.getItem("employeeRole");
     const employeeName = localStorage.getItem("employeeName");
@@ -105,9 +191,19 @@ function employeeAuthentication() {
 
     if (employeeRole === "Atendente") {
         // Oculta o menu "Gestão de Produtos" para Atendentes
+        console.log(employeeRole);
         const gestaoProdutosLink = document.querySelector('a.nav-link[onclick="loadPage(\'gestao-produtos\', this)"]');
         if (gestaoProdutosLink) {
             gestaoProdutosLink.parentElement.style.display = "none";
+        }
+
+        if (employeeRole === "Atendente") {
+            // Oculta o botão de status
+            const toggleContainer = document.getElementById("toggleContainer");
+            console.log("toggleContainer existe?", toggleContainer);
+            console.log("employeeRole:", employeeRole);
+                toggleContainer.style.setProperty('display', 'none', 'important');
+                console.log("toggleContainer oculto");
         }
 
 
@@ -135,10 +231,10 @@ function employeeAuthentication() {
         }
         if (listagemCard) {
             listagemCard.style.display = "none";
-        }
+        }}
     }
-}
 
 document.addEventListener("DOMContentLoaded", function () {
     employeeAuthentication();
+    
 });

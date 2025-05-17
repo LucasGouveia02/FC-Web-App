@@ -14,6 +14,32 @@
     <div class="all-content">
         <header class="d-flex align-items-center text-white p-3" style="background: #EC1D25;">
             <h3 class="mb-0">FOODCONNECT</h3>
+            <div id="toggleContainer" class="ms-auto d-flex align-items-center gap-2">
+                <span>Status Lanchonete:</span>
+                <label class="switch">
+                    <input type="checkbox" id="statusToggle" onchange="handleToggle(this)">
+                    <span class="slider round"></span>
+                </label>
+                <span id="statusLabel">Closed</span>
+            </div>
+                <div class="modal fade" id="statusModal" tabindex="-1" aria-labelledby="statusModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="statusModalLabel">Confirmar alteração</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                        </div>
+                        <div class="modal-body" id="modalMessage">
+                        <p>Você tem certeza que deseja <span id="modalAction"></span> a lanchonete?</p>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" id="confirmToggle">Confirmar</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+              
         </header>
 
         <div class="d-flex">
