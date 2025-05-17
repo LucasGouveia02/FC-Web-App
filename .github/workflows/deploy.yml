@@ -1,0 +1,32 @@
+name: Deploy to Azure VM
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Deploy via SSH
+        run: |
+          ssh -o StrictHostKeyChecking=no FoodConnect@4.201.144.173 '
+            set -e
+            PROJECT_DIR="/home/FoodConnect/frontendWeb/FC-Web-App"
+
+            cd $PROJECT_DIR
+
+            echo "Atualizando código fonte..."
+            git pull origin main
+
+            echo "Deploy finalizado com sucesso!"
+          '
