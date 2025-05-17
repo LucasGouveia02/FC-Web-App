@@ -108,7 +108,7 @@ function setInitialStoreStatus() {
     const label = document.getElementById('statusLabel');
     console.log("storeId:", storeId);
 
-    fetch(`http://localhost:8083/store/status?storeId=${storeId}`)
+    fetch(`http://4.201.144.173:8083/store/status?storeId=${storeId}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error("Erro ao obter status da loja");
@@ -149,7 +149,7 @@ document.getElementById("confirmToggle").addEventListener("click", function () {
     input.checked = isOpen;
     label.textContent = isOpen ? 'Open' : 'Closed';
 
-    fetch(`http://localhost:8083/store/openClose?open=${isOpen}&storeId=${storeId}`, {
+    fetch(`http://4.201.144.173:8083/store/openClose?open=${isOpen}&storeId=${storeId}`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'
