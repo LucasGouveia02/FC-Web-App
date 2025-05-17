@@ -97,10 +97,10 @@ function logout() {
     alert("Saindo do sistema...");
 
     // Redireciona para a página de login
-    window.location.href = "http://localhost:3000/login.html";
+    window.location.href = "http://4.201.144.173:3000/login.html";
 
     // Substitui o histórico para impedir o retorno
-    window.history.replaceState(null, null, "http://localhost:3000/login.html");
+    window.history.replaceState(null, null, "http://4.201.144.173:3000/login.html");
 }
 
 document.addEventListener("DOMContentLoaded", function () {
