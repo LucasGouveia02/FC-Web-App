@@ -12,5 +12,5 @@ app.get("/", (req, res) => {
 
 const PORT = 3000;
 app.listen(PORT, () => {
-  console.log(`Servidor rodando em http://localhost:${PORT}`);
+  console.log(`Servidor rodando em http://4.201.144.173:${PORT}`);
 });

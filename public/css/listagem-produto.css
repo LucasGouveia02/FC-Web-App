@@ -1,0 +1,691 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+}
+
+#main-content {
+    max-height: 80%;
+    padding-top: 2%;
+    box-sizing: border-box;
+}
+
+.container {
+    flex: 1;
+    /* Faz ocupar todo o espaço disponível dentro do flex container */
+    max-height: 80vh;
+    border: 1px solid #ccc;
+    /* Borda visível ao redor */
+    border-radius: 10px;
+    background: white;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.produto-nao-encontrado {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.produto-nao-encontrado {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 100px auto 100px auto;
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    /* Centralize o texto dentro do carrinho-vazio */
+
+}
+
+.produto-nao-encontrado img {
+    width: 160px;
+    margin: 50px 0 50px 0;
+}
+
+.produto-nao-encontrado p {
+    font-size: 30px;
+}
+
+td button:hover {
+    color: black;
+}
+
+button:hover {
+    background-color: #F31C1CE0;
+    transform: translateY(-2px);
+}
+
+#new {
+    padding: 12px 25px;
+    font-size: 18px;
+    background-color: #28a745;
+}
+
+.container-filtro button {
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    background-color: #EC1D25;
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#buscar-filtro {
+    padding: 10px 20px;
+    font-size: 15px;
+    background-color: #28a745;
+}
+
+#buscar-filtro {
+    padding: 10px 20px;
+    font-size: 15px;
+    background-color: #28a745;
+}
+
+#new:hover,
+#buscar-filtro:hover {
+    background-color: black;
+    color: white;
+}
+
+#new:active,
+#buscar-filtro:active {
+    background-color: #1e7e34;
+}
+
+.pagination button {
+    margin: 5px;
+    padding: 8px 16px;
+    background-color: #f9f9f9;
+    color: black;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.pagination button:hover {
+    background-color: black;
+    color: white;
+}
+
+.pagination button.active {
+    background-color: black;
+    color: white;
+}
+
+.pagination button:disabled {
+    background-color: #e9ecef;
+    color: #6c757d;
+}
+
+.header {
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 8px;
+    flex-wrap: wrap;
+}
+
+.header span {
+    font-weight: 900;
+    font-size: 20px;
+    word-break: break-all;
+}
+
+#new {
+    font-size: 25px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    background-color: rgb(57, 57, 226);
+}
+
+#buscar-filtro {
+    font-size: 15px;
+    padding: 3px 12px;
+    border-radius: 3px;
+    border: none;
+    color: white;
+    background-color: rgb(57, 57, 226);
+}
+
+.divTable {
+    padding: 10px;
+    width: 100%;
+    height: auto;
+    overflow-x: auto;
+    box-sizing: border-box;
+}
+
+table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: whitesmoke;
+}
+
+th,
+td {
+    word-wrap: break-word;
+    padding: 10px;
+    text-align: center;
+    /* Alinha o conteúdo nas células */
+    vertical-align: middle;
+    /* Alinha o conteúdo verticalmente ao centro */
+}
+
+tbody tr td {
+    vertical-align: middle;
+    /* Alinha o conteúdo das células ao centro */
+    padding: 10px;
+}
+
+thead tr th.acao,
+tbody tr td.acao {
+    width: 100px !important;
+}
+
+td img {
+    max-width: 50px;
+    max-height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+    vertical-align: middle;
+    box-shadow: 0 1px 2px #0003;
+    height: 200px;
+}
+
+td button {
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    background: #EC1D25;
+    font-size: 16px;
+    color: white;
+    padding: 5px;
+    transition: color 0.3s ease;
+}
+
+td button i {
+    font-size: 20px;
+}
+
+td button i:first-child {
+    margin-right: 10px;
+}
+
+tbody tr {
+    border-bottom: 1px solid rgb(238, 235, 235);
+}
+
+.container-filtro {
+    width: 100%;
+    margin: 0.5% 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.filtro-usuarios #filtro {
+    width: 120%;
+    max-width: 600px;
+    height: 35px;
+    border: 2px solid #8d8d8d;
+    border-radius: 13px;
+    padding-left: 12px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.pagination button {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+.pagination button.active {
+    background-color: #EC1D25;
+    color: white;
+}
+
+.pagination button:disabled {
+    background-color: #e9ecef;
+    cursor: not-allowed;
+}
+
+/* resposividade header */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        height: auto;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .lado-a,
+    .lado-b {
+        width: 100%;
+        justify-content: center;
+        margin: 10px 0;
+    }
+
+    header .lado-a img {
+        height: 60px;
+    }
+
+    .lado-a #buscar {
+        width: 100%;
+        max-width: 300px;
+        margin-top: 10px;
+    }
+
+    header .lado-b img {
+        height: 35px;
+    }
+
+    .lado-b .info-usuario .nome-usuario {
+        font-size: 14px;
+    }
+
+    .lado-b .info-usuario .grupo-usuario {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .lado-a #buscar {
+        width: 100%;
+        max-width: 250px;
+    }
+
+    .lado-b .info-usuario .nome-usuario {
+        font-size: 12px;
+    }
+
+    .lado-b .info-usuario .grupo-usuario {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+
+    .header span {
+        font-size: 18px;
+    }
+
+    #new,
+    #buscar-filtro {
+        padding: 5px 15px;
+        font-size: 18px;
+    }
+
+    .lado-a,
+    .lado-b {
+        flex: 1 1 100%;
+        text-align: center;
+    }
+
+    .divTable {
+        height: auto;
+    }
+
+    th,
+    td {
+        font-size: 12px;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header span {
+        font-size: 16px;
+    }
+
+    #new,
+    #buscar-filtro {
+        padding: 5px;
+        font-size: 14px;
+    }
+
+    th,
+    td {
+        font-size: 10px;
+        padding: 6px;
+    }
+
+    .pagination button {
+        padding: 4px 8px;
+        font-size: 12px;
+    }
+}
+
+/* Overlay para bloquear interações com o fundo */
+.overlay {
+    display: none;
+    /* Escondido por padrão */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Fundo escuro */
+    z-index: 999;
+    /* Um pouco abaixo do modal */
+}
+
+/* modal para visualizar produto */
+.card-produto {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    /* Centraliza verticalmente */
+    justify-content: center;
+    /* Centraliza horizontalmente */
+    background-color: rgba(0, 0, 0, 0.76);
+    /* Fundo escuro para sobreposição */
+}
+
+.modal-detalhe-prod-adm {
+    width: 60%;
+    height: 75%;
+    background-color: #ffffff;
+    border-radius: 10px;
+    border: 1px solid rgb(206, 206, 206);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 20px;
+    gap: 15px;
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.066);
+}
+
+.modal-heading {
+    display: flex;
+    height: 10%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-preview {
+    color: rgb(0, 0, 0);
+    font-size: 30px;
+    font-weight: 800;
+    text-align: center;
+}
+
+/* botão fechar modal */
+.btn-fechar {
+    position: absolute;
+    width: 3em;
+    height: 3em;
+    border: none;
+    background: rgb(0, 0, 0);
+    border-radius: 5px;
+    transition: background 0.5s;
+    right: 4%;
+}
+
+.X {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2em;
+    height: 1.5px;
+    background-color: rgb(255, 255, 255);
+    transform: translateX(-50%) rotate(45deg);
+}
+
+.Y {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2em;
+    height: 1.5px;
+    background-color: #fff;
+    transform: translateX(-50%) rotate(-45deg);
+}
+
+.close {
+    position: absolute;
+    display: flex;
+    padding: 0.8rem 1.5rem;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(-50%);
+    top: -70%;
+    left: 50%;
+    width: 2em;
+    height: 1em;
+    font-size: 12px;
+    background-color: rgb(19, 22, 24);
+    color: rgb(187, 229, 236);
+    border: none;
+    border-radius: 3px;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.btn-fechar:hover {
+    background-color: rgb(211, 21, 21);
+}
+
+.btn-fechar:active {
+    background-color: rgb(130, 0, 0);
+}
+
+.btn-fechar:hover>.close {
+    animation: close 0.2s forwards 0.25s;
+}
+
+@keyframes close {
+    100% {
+        opacity: 1;
+    }
+}
+
+/* fim btn fechar modal */
+
+/* detalhes do produto */
+.produto {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+/* CARROSSEL DE IMAGENS */
+.produto .imagens-prod {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 50%;
+    /* background-color: #007bff; */
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+}
+
+.swiper {
+    height: 60%;
+    width: 100%;
+}
+
+.swiper-slide {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 450px) {
+    .swiper {
+        height: 50%;
+    }
+}
+
+.swiper-button-next {
+    width: 50%;
+}
+
+.swiper-button-prev {
+    width: 50%;
+}
+
+/* INFO PROD */
+.produto .info-prod {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 50%;
+    /* background-color: #62aeff; */
+    padding: 0 60px;
+
+}
+
+.titulo-prod {
+    margin-top: 80px;
+    font-size: 45px;
+    font-weight: 700;
+}
+
+.valor-prod {
+    margin-top: 30px;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.avaliacao-prod {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.descricao-prod {
+    margin-top: 25px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+/*Fim estilo modal visualizar produto  */
+
+/* modal confirmar alteração no status do produto */
+.card-confirmar {
+    z-index: 1000;
+    width: 300px;
+    height: fit-content;
+    background: rgb(255, 255, 255);
+    border-radius: 20px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 30px;
+    position: absolute;
+    left: 50;
+    top: 50;
+    box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.068);
+}
+
+.card-content {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.card-heading {
+    font-size: 20px;
+    font-weight: 700;
+    color: rgb(27, 27, 27);
+}
+
+.card-description {
+    margin-top: 10px;
+    font-weight: 400;
+    color: rgb(102, 102, 102);
+}
+
+.card-button-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.card-button {
+    width: 50%;
+    height: 35px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.primary {
+    background-color: black;
+    color: white;
+}
+
+.secondary {
+    background-color: #919191;
+}
+
+.secondary:hover {
+    background-color: #919191;
+}
+
+.exit-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.exit-button:hover svg {
+    fill: black;
+}
+
+.exit-button svg {
+    fill: rgb(175, 175, 175);
+}

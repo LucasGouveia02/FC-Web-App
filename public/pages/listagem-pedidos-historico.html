@@ -1,0 +1,102 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/listagem-produto.css">
+    <link rel="stylesheet" href="../css/listagem-pedidos.css">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+
+    <title>Lista Pedidos</title>
+</head>
+
+<div id="main-content">
+    <div class="container">
+        <div class="header">
+            <span>Histórico de Pedidos</span>
+        </div>
+        <div class="container-filtro">
+            <div class="filtro-usuarios">
+                <input id="filtro" type="text" placeholder="FILTRO DE PEDIDO AQUI">
+            </div>
+            <button id="buscar-filtro" type="button" class="btn btn-primary btn-lg btn-block btn-buscar"
+                style="background: #EC1D25">Buscar</i></button>
+        </div>
+        <div class="divTable">
+        </div>
+        <div id="pagination" class="pagination">
+            <!-- Botões de paginação serão gerados dinamicamente -->
+        </div>
+    </div>
+</div>
+
+<!-- desativa o clique no fundo da tela ao abrir o modal -->
+<div id="overlay" class="overlay"></div>
+
+<div class="modal-pedido">
+    <div class="modal-detalhe-pedido">
+        <div class="modal-heading">
+            <h2 class="titulo-modal">Detalhes do Pedido</h2>
+            <button onclick="fecharModalProduto()" class="btn-fechar">
+                <i class="uil uil-times"></i>
+                <div class="close">Fechar</div>
+            </button>
+        </div>
+
+        <div class="timeline">
+            <ul class="timeline-list">
+                <li class="timeline-item">
+                    <i class="icon uil uil-money-bill"></i>
+                    <div class="progress one"><i class="uil uil-check"></i></div>
+                    <p class="text">Payment at 02/05/2025 on 17:31</p>
+                </li>
+                <li class="timeline-item">
+                    <i class="icon uil uil-crockery"></i>
+                    <div class="progress two"><i class="uil uil-check"></i></div>
+                    <p class="text">Preparing at 02/05/2025 on 17:31</p>
+                </li>
+                <li class="timeline-item">
+                    <i class="icon uil uil-map-marker"></i>
+                    <div class="progress three"><i class="uil uil-check"></i></div>
+                    <p class="text">Available at 02/05/2025 on 17:31</p>
+                </li>
+                <li class="timeline-item">
+                    <i class="icon uil uil-check-square"></i>
+                    <div class="progress four"><i class="uil uil-check"></i></div>
+                    <p class="text">Finished at 02/05/2025 on 17:31</p>
+                </li>
+            </ul>
+        </div>
+        <div class="tabela-produtos-container">
+            <table class="tabela-produtos">
+                <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th>Quantidade</th>
+                        <th>Valor Unitário</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Linhas serão inseridas dinamicamente via JavaScript -->
+                </tbody>
+            </table>
+        </div>
+
+        <p class="valor-total-pedido">Total do Pedido: <strong>R$ 78,00</strong></p>
+
+        <button class="btn-avancar-etapa">Avançar Etapa</button>
+
+    </div>
+</div>
+
+
+<script src="../js/listagem-pedidos-historico.js" defer></script>

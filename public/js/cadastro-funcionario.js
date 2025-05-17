@@ -2,51 +2,57 @@ export function init() {
     const telefoneInput = document.getElementById("telefone");
     const botaoConfirmar = document.querySelector(".btn-confirmar");
     const botaoCancelar = document.querySelector(".btn-cancelar");
+    let storeId = localStorage.getItem("storeId");
     if (!botaoConfirmar) return;
 
     botaoConfirmar.addEventListener("click", async () => {
-        console.log("Cadastro de funcionário iniciado!");
-
-        const nome = document.getElementById("nomeCompleto").value.trim();
-        const telefone = document.getElementById("telefone").value.trim();
-        const grupo = document.getElementById("grupo").value;
+        const nomeCompleto = document.getElementById("nomeCompleto").value.trim();
+        const contato = document.getElementById("telefone").value.replace(/\D/g, ""); // Remove caracteres não numéricos
         const email = document.getElementById("email").value.trim();
         const senha = document.getElementById("senha").value;
         const confirmSenha = document.getElementById("confirmSenha").value;
-
-        if (!nome || !telefone || !email || !senha || !confirmSenha) {
-            alert("Todos os campos são obrigatórios!");
-            return;
-        }
+        const grupo = document.getElementById("grupo").value;
 
         if (senha !== confirmSenha) {
             alert("As senhas não coincidem!");
             return;
         }
 
-        try {
-            const response = await fetch("URL_DA_SUA_API/cadastrar-funcionario", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ nome, telefone, grupo, email, senha }),
+        const employeeData = {
+            name: nomeCompleto,
+            phoneNumber: contato,
+            email: email,
+            password: senha,
+            role: grupo,
+            storeId: storeId
+        };
+
+        fetch("http://4.201.144.173:8083/employee/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(employeeData)
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erro ao cadastrar. Verifique os dados e tente novamente.");
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert("Cadastro realizado com sucesso!");
+                loadPage('home', null);
+            })
+            .catch(error => {
+                alert(error.message);
             });
-
-            if (!response.ok) {
-                throw new Error("Erro ao cadastrar funcionário");
-            }
-
-            alert("Cadastro realizado com sucesso!");
-            window.location.href = "TelaListagemUsuarios.html";
-        } catch (error) {
-            console.error("Erro:", error);
-            alert("Falha ao cadastrar funcionário. Tente novamente.");
-        }
     });
 
     botaoCancelar.addEventListener("click", () => {
         const confirmar = confirm("Você tem certeza que deseja cancelar o cadastro?");
         if (confirmar) {
-            loadSubPage('gestao-funcionarios');
+            loadLastPage('gestao-funcionarios');
         }
     });
 
