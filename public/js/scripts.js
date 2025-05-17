@@ -101,11 +101,12 @@ document.addEventListener("DOMContentLoaded", function () {
     employeeAuthentication(); 
 });
 let pendingStatusChange = null;
+let storeId = localStorage.getItem("storeId");
 
 function setInitialStoreStatus() {
     const toggle = document.getElementById('statusToggle');
     const label = document.getElementById('statusLabel');
-    const storeId = 1;
+    console.log("storeId:", storeId);
 
     fetch(`http://localhost:8083/store/status?storeId=${storeId}`)
         .then(response => {
@@ -142,7 +143,7 @@ document.getElementById("confirmToggle").addEventListener("click", function () {
     if (!pendingStatusChange) return;
 
     const { isOpen, input, label } = pendingStatusChange;
-    const storeId = 1;
+    
 
     // Atualiza visualmente
     input.checked = isOpen;
@@ -180,6 +181,7 @@ document.getElementById("confirmToggle").addEventListener("click", function () {
 
 
 function employeeAuthentication() {
+    
     const employeeRole = localStorage.getItem("employeeRole");
     const employeeName = localStorage.getItem("employeeName");
     const storeName = localStorage.getItem("storeName");
