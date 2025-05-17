@@ -147,7 +147,7 @@ document.getElementById("confirmToggle").addEventListener("click", function () {
 
     // Atualiza visualmente
     input.checked = isOpen;
-    label.textContent = isOpen ? 'Open' : 'Closed';
+    label.textContent = isOpen ? 'Aberto' : 'Fechado';
 
     fetch(`http://4.201.144.173:8083/store/openClose?open=${isOpen}&storeId=${storeId}`, {
         method: 'PATCH',
@@ -168,7 +168,7 @@ document.getElementById("confirmToggle").addEventListener("click", function () {
             console.error("Erro ao atualizar o status da loja:", error);
             // Reverte se der erro
             input.checked = !isOpen;
-            label.textContent = !isOpen ? 'Open' : 'Closed';
+            label.textContent = !isOpen ? 'Aberto' : 'Fechado';
         });
 
     pendingStatusChange = null;
@@ -176,9 +176,6 @@ document.getElementById("confirmToggle").addEventListener("click", function () {
     // Fecha o modal
     bootstrap.Modal.getInstance(document.getElementById("statusModal")).hide();
 });
-
-
-
 
 function employeeAuthentication() {
     
