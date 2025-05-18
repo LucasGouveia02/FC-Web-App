@@ -124,7 +124,7 @@ function setInitialStoreStatus() {
         })
         .then(isOpen => {
             toggle.checked = isOpen;
-            label.textContent = isOpen ? 'Open' : 'Closed';
+            label.textContent = isOpen ? 'Aberto' : 'Fechado';
         })
         .catch(error => {
             console.error("Erro ao definir status inicial da loja:", error);
